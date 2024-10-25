@@ -1,12 +1,11 @@
 __pycache__/
-*.pyc
-
+.vscode/
 images/
+
+*.pyc
 *.png
 *.psd
 
 app_data.json
-
-.vscode/
-
 test_window.py
+PrptableBox.ui
