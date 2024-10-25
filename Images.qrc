@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="btn">
+    <file>images/add_64px.png</file>
+    <file>images/del_64px.png</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>images/app_icon.png</file>
+  </qresource>
+</RCC>
