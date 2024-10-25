@@ -22,13 +22,11 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         self.old_pos = None #移动窗口，上一次鼠标指针位置
         self.styleData = StyleSheetData.loadStyleSheetData("theme\\styleSheet.qss")
         self.appData = AppData()
-        self.horizontalLayout = {
-            1: self.horizontalLayout_1,
-            2: self.horizontalLayout_2,
-            3: self.horizontalLayout_3,
-            4: self.horizontalLayout_4,
-            5: self.horizontalLayout_5,
-            6: self.horizontalLayout_6
+        self.appLayouts ={
+            0:{0:self.Col_00,1:self.Col_01,2:self.Col_02,3:self.Col_03,4:self.Col_04,5:self.Col_05,6:self.Col_06,7:self.Col_07,8:self.Col_08,9:self.Col_09},
+            1:{0:self.Col_10,1:self.Col_11,2:self.Col_12,3:self.Col_13,4:self.Col_14,5:self.Col_15,6:self.Col_16,7:self.Col_17,8:self.Col_18,9:self.Col_19},
+            2:{0:self.Col_20,1:self.Col_21,2:self.Col_22,3:self.Col_23,4:self.Col_24,5:self.Col_25,6:self.Col_26,7:self.Col_27,8:self.Col_28,9:self.Col_29},
+            3:{0:self.Col_30,1:self.Col_31,2:self.Col_32,3:self.Col_33,4:self.Col_34,5:self.Col_35,6:self.Col_36,7:self.Col_37,8:self.Col_38,9:self.Col_39}
             }
 
         # 连接按钮信号
@@ -73,7 +71,10 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
     def mouseReleaseEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.old_pos = None  # 释放鼠标时重置旧位置
-
+    # 获取显示组件
+    def getLayout(self, row: int, col: int):
+        return self.appLayouts[row][col]
+    
     # 添加app
     def addApp(self):
         selectedFiles, _ = QFileDialog.getOpenFileNames(self, "选择程序", "", "程序 (*.exe)") # 获取选择的文件列表
