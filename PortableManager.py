@@ -6,6 +6,7 @@ from PySide6.QtCore import Qt, QFileInfo, QProcess
 from Ui_PortableBox import Ui_MainWindow
 from over_widgets.OverQLabel import OverQLabel
 from data.DataManager import UserData, StyleSheetData
+from data.DataProcessThread import FolderSizeThread
 
 
 class PortableAppManager(QMainWindow, Ui_MainWindow):
@@ -31,6 +32,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         self.colCount = self.appLayouts[0].__len__()
         print(self.rowCount,self.colCount)
         self.userData = UserData((self.rowCount, self.colCount))
+        self.folderSizeThread = FolderSizeThread()
         self.pointIsSelected = ()
         # 连接按钮信号
         self.ButtonMin.clicked.connect(self.showMinimized) #最小化
@@ -176,6 +178,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         print(f'app{self.pointIsSelected}is deleted')
         self.updateAllLabels(self.pointIsSelected[0],self.pointIsSelected[1])
         self.pointIsSelected = ()
+        self.updateLabelText()
         self.userData.displayData()
 
     def updateAllLabels(self, row: int, col: int):
@@ -216,7 +219,17 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             label = [layout.itemAt(i).widget() for i in range(layout.count())][0]
             layout.removeWidget(label)
             layoutLast.addWidget(label)
-            label.point = (targetPoint[0], targetPoint[1]) 
+            label.point = (targetPoint[0], targetPoint[1])
+
+    def updateLabelText(self):
+        if self.pointIsSelected == ():
+            self.FileNameLabel.setText('')
+            self.TargetPathLine.setText('')
+            self.AddTimeLabel.setText('')
+            self.CreateTimeLabel.setText('')
+            self.LastModifiedLabel.setText('')
+            self.FileSizeLabel.setText('')
+            self.TotalSizeLabel.setText('') 
            
 if __name__ == "__main__":
     app = QApplication(sys.argv)

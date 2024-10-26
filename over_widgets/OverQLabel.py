@@ -19,7 +19,7 @@ class OverQLabel(QLabel):
         self.mainWindow.LastModifiedLabel.setText(self.info.lastModified().toString("yyyy-MM-dd hh:mm:ss"))
         self.mainWindow.FileSizeLabel.setText(f"{self.info.size()/1024.0/1024.0:.2f}"+" MB")
         #self.mainWindow.FileSizeLabel.setText("{:.2f} MB".format(self.info.size() / 1024.0 / 1024.0))
-        self.mainWindow.TotalSizeLabel.setText(f"{self.getFolderSize(f"{self.info.canonicalPath()}")/1024.0/1024.0:.2f}"+" MB")
+        self.getFolderSize(f'{self.info.canonicalPath()}')
 
         # print(f"absoluteFilePath: {self.info.absoluteFilePath()}")
         # print(f"baseName: {self.info.baseName()}")
@@ -38,15 +38,9 @@ class OverQLabel(QLabel):
         # print(f"isSymbolicLink: {self.info.isSymbolicLink()}")
     
     def getFolderSize(self,folderPath):
-        dir = QDir(folderPath)
-        totalSize = 0
-        # 获取文件和子目录
-        for fileInfo in dir.entryInfoList(QDir.AllEntries | QDir.NoDotAndDotDot):
-            if fileInfo.isFile():
-                totalSize += fileInfo.size()  # 获取文件大小
-            elif fileInfo.isDir():
-                totalSize += self.getFolderSize(fileInfo.absoluteFilePath())  # 递归获取子目录大小
-        return totalSize
+        self.mainWindow.TotalSizeLabel.setText("玩命计算中...")
+        self.mainWindow.folderSizeThread.sizeCalculated.connect(lambda size: self.mainWindow.TotalSizeLabel.setText(f"{size/1024.0/1024.0:.2f}"+" MB"))
+        self.mainWindow.folderSizeThread.start(folderPath)
 
 
     @Property(bool)
@@ -91,7 +85,7 @@ class OverQLabel(QLabel):
     def showContextMenu(self, event):
         contextMenu = QMenu(self)
         contextMenu.addAction("打开", lambda:self.mainWindow.openApp(self.info.absoluteFilePath()))
-        contextMenu.addAction("删除", lambda:self.mainWindow.delApp())
+        contextMenu.addAction("在PortableBox删除", lambda:self.mainWindow.delApp())
         contextMenu.setStyleSheet(self.mainWindow.styleData)
         contextMenu.exec(event.globalPos())
 
