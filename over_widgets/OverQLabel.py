@@ -2,11 +2,10 @@ from PySide6.QtWidgets import QMenu, QLabel
 from PySide6.QtCore import Qt, Property, QFileDevice ,QDateTime, QDir
 
 class OverQLabel(QLabel):
-    def __init__(self, mainWindow, index: tuple[int, int], name):
+    def __init__(self, mainWindow, point: tuple[int, int]):
         super(OverQLabel, self).__init__()
         self.mainWindow = mainWindow 
-        self.index = index
-        self.name = name
+        self.point = point
         self.selected = False  # 初始化为未选中状态
         self.setStyleSheet(self.mainWindow.styleData) # 设置初始样式
         self.info = None
@@ -69,12 +68,13 @@ class OverQLabel(QLabel):
             # 设置当前标签为选中状态
             self.dispalyInfo()
             self.isSelected = not self.isSelected
-            print(f"app{self.index} is selected")
-            # 取消其他标签的选中状态
-            apps = self.mainWindow.appData.getNonEmptyElements()
-            for key in apps:
-                 if apps[key]['app'].index != self.index:  # 排除自己
-                    apps[key]['app'].deselect()   
+            if self.mainWindow.pointIsSelected:
+                self.mainWindow.getSelectedLabel().deselect()
+                self.mainWindow.pointIsSelected = self.point
+            else:
+                self.mainWindow.pointIsSelected = self.point
+            print(f"app{self.point} is selected")
+              
 
         elif event.button() == Qt.RightButton:
             if self.selected:
