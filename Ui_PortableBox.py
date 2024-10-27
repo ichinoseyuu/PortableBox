@@ -288,6 +288,56 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.ButtonDel)
 
+        self.ButtonSelectMore = QPushButton(self.layoutWidget)
+        self.ButtonSelectMore.setObjectName(u"ButtonSelectMore")
+        sizePolicy.setHeightForWidth(self.ButtonSelectMore.sizePolicy().hasHeightForWidth())
+        self.ButtonSelectMore.setSizePolicy(sizePolicy)
+        self.ButtonSelectMore.setMinimumSize(QSize(32, 32))
+        self.ButtonSelectMore.setMaximumSize(QSize(32, 32))
+        self.ButtonSelectMore.setFont(font)
+        self.ButtonSelectMore.setStyleSheet(u"QPushButton {\n"
+"	image: url(:/btn/images/select_more_64px.png);\n"
+"	border: none;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
+"	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); \n"
+"	color: #555;\n"
+"	border: 1px solid rgb(212, 208, 255);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
+"		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));\n"
+"	border: 1px solid rgb(212, 208, 255);\n"
+"}")
+
+        self.horizontalLayout_7.addWidget(self.ButtonSelectMore)
+
+        self.ButtonSettings = QPushButton(self.layoutWidget)
+        self.ButtonSettings.setObjectName(u"ButtonSettings")
+        sizePolicy.setHeightForWidth(self.ButtonSettings.sizePolicy().hasHeightForWidth())
+        self.ButtonSettings.setSizePolicy(sizePolicy)
+        self.ButtonSettings.setMinimumSize(QSize(32, 32))
+        self.ButtonSettings.setMaximumSize(QSize(32, 32))
+        self.ButtonSettings.setFont(font)
+        self.ButtonSettings.setStyleSheet(u"QPushButton {\n"
+"	image: url(:/btn/images/settings_64px.png);\n"
+"	border: none;\n"
+"}\n"
+"QPushButton:hover {\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
+"	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); \n"
+"	color: #555;\n"
+"	border: 1px solid rgb(212, 208, 255);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
+"		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));\n"
+"	border: 1px solid rgb(212, 208, 255);\n"
+"}")
+
+        self.horizontalLayout_7.addWidget(self.ButtonSettings)
+
         self.BtnSpacer = QSpacerItem(40, 32, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_7.addItem(self.BtnSpacer)

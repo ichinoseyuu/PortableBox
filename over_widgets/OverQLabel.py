@@ -1,5 +1,8 @@
 from PySide6.QtWidgets import QMenu, QLabel
-from PySide6.QtCore import Qt, Property, QFileDevice ,QDateTime, QDir
+from PySide6.QtGui import QAction
+from PySide6.QtCore import Qt, Property, QDateTime, QProcess
+import os
+
 
 class OverQLabel(QLabel):
     def __init__(self, mainWindow, point: tuple[int, int]):
@@ -84,11 +87,20 @@ class OverQLabel(QLabel):
     # 右键菜单
     def showContextMenu(self, event):
         contextMenu = QMenu(self)
-        contextMenu.addAction("打开", lambda:self.mainWindow.openApp(self.info.absoluteFilePath()))
-        contextMenu.addAction("在PortableBox删除", lambda:self.mainWindow.delApp())
+        
+        contextMenu.addAction("运行", lambda:self.mainWindow.openApp(self.info.absoluteFilePath()))
+        contextMenu.addAction("在资源管理器中显示", lambda:self.showInExplorer(self.info.canonicalPath()))
+        contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp())
+        
         contextMenu.setStyleSheet(self.mainWindow.styleData)
         contextMenu.exec(event.globalPos())
 
     # 设置为未选中状态
     def deselect(self):
         self.isSelected = False
+
+    def showInExplorer(self, filePath):
+        filePath = os.path.normpath(filePath)
+        if os.path.exists(filePath):
+            print(f"打开目录: {filePath}")
+            QProcess.startDetached("explorer", [filePath])

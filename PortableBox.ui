@@ -586,6 +586,100 @@ QPushButton:pressed {
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="ButtonSelectMore">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>12</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	image: url(:/btn/images/select_more_64px.png);
+	border: none;
+}
+QPushButton:hover {
+	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); 
+	color: #555;
+	border: 1px solid rgb(212, 208, 255);
+}
+QPushButton:pressed {
+	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));
+	border: 1px solid rgb(212, 208, 255);
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ButtonSettings">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>12</pointsize>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton {
+	image: url(:/btn/images/settings_64px.png);
+	border: none;
+}
+QPushButton:hover {
+	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); 
+	color: #555;
+	border: 1px solid rgb(212, 208, 255);
+}
+QPushButton:pressed {
+	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
+		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));
+	border: 1px solid rgb(212, 208, 255);
+}</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="BtnSpacer">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>

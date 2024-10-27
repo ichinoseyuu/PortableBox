@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QApplication, QFileDialog, QLayout,QMainWindow, QFileIconProvider
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QFileIconProvider
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt, QFileInfo, QProcess
 
@@ -195,7 +195,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             layoutNextRow.removeWidget(label)
             layoutLast.addWidget(label)
             label.point = (row, col)
-            self.userData.updateAppDockerPath(row + 1, col, 'none') # 更新数据
+            self.userData.updateAppDockerPath(row + 1, 0, 'none') # 更新数据
             self.userData.updateAppDockerPath(row, col, f'{label.info.absoluteFilePath()}')
             return self.updateAllLabels(row + 1, 0)
         # 当前列不是最后一列

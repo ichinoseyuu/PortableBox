@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="btn">
+    <file>images/select_more_64px.png</file>
+    <file>images/settings_64px.png</file>
     <file>images/add_64px.png</file>
     <file>images/del_64px.png</file>
   </qresource>
