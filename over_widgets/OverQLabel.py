@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QMenu, QLabel
 from PySide6.QtGui import QAction
 from PySide6.QtCore import Qt, Property, QDateTime, QProcess
 import os
+from data.DataManager import UserData, StyleSheetData
 
 
 class OverQLabel(QLabel):
@@ -10,7 +11,7 @@ class OverQLabel(QLabel):
         self.mainWindow = mainWindow 
         self.point = point
         self.selected = False  # 初始化为未选中状态
-        self.setStyleSheet(self.mainWindow.styleData) # 设置初始样式
+        self.setStyleSheet(StyleSheetData.labelStyle) # 设置初始样式
         self.info = None
         self.addTime= QDateTime.currentDateTime().toString("yyyy-MM-dd hh:mm:ss")
 
@@ -92,7 +93,7 @@ class OverQLabel(QLabel):
         contextMenu.addAction("在资源管理器中显示", lambda:self.showInExplorer(self.info.canonicalPath()))
         contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp())
         
-        contextMenu.setStyleSheet(self.mainWindow.styleData)
+        contextMenu.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
         contextMenu.exec(event.globalPos())
 
     # 设置为未选中状态

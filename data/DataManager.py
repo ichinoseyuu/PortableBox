@@ -1,63 +1,94 @@
 import os, json
 
 class UserData():
-    def __init__(self,size:tuple[int,int]):
-        self.dataFileName = './data/app_data.json'
-        self.appDocker = {
+    appDataFileName = './data/app_data.json'
+    settingsDataFileName = './data/settings.json'
+    appDocker = {}
+    settingsData = {}    
+
+    def initialize(size: tuple[int,int]):
+        UserData.appDocker = {
             row: {col: {'path': 'none'} for col in range(0,size[1])}
             for row in range(0,size[0])
-            }
+        }
+        UserData.settingsData = {
+            'theme': 'light',
+        }
 
     # 加载数据
-    def loadUserData(self): 
-        if not os.path.exists(self.dataFileName):
-            # 创建文件（不写入任何内容）
-            with open(self.dataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(self.appDocker, jsonFile, indent=4)
-                pass
-        else:
-            # 读取文件并加载数据
-            with open(self.dataFileName, 'r', encoding='utf-8') as jsonFile:
-                datas = json.load(jsonFile)
-                for row, col_data in datas.items():
-                    row = int(row)
-                    self.appDocker[row] = {}
-                    for col, value in col_data.items():
-                        col = int(col)
-                        self.appDocker[row][col] = value
-        self.displayData()
+    @ staticmethod
+    def loadUserData():    
+        if not os.path.exists(UserData.appDataFileName):
+            with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
+                json.dump(UserData.appDocker, jsonFile, indent=4)
+        if not os.path.exists(UserData.settingsDataFileName):
+            with open(UserData.settingsDataFileName, 'w', encoding='utf-8') as jsonFile:
+                json.dump(UserData.settingsData, jsonFile, indent=4)    
+        # 读取文件并加载数据
+        with open(UserData.appDataFileName, 'r', encoding='utf-8') as jsonFile:
+            datas = json.load(jsonFile)
+            for row, col_data in datas.items():
+                row = int(row)
+                UserData.appDocker[row] = {}
+                for col, value in col_data.items():
+                    col = int(col)
+                    UserData.appDocker[row][col] = value
+        with open(UserData.settingsDataFileName, 'r', encoding='utf-8') as jsonFile:
+            UserData.settingsData = json.load(jsonFile)
+        UserData.displayData()
 
     
     # 保存数据
-    def saveUserData(self):
-        if not os.path.exists(self.dataFileName):
+    @ staticmethod
+    def saveUserData():
+        if not os.path.exists(UserData.appDataFileName):
             # 创建文件（不写入任何内容）
-            with open(self.dataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(self.appDocker, jsonFile, indent=4)
-        else:
-            with open(self.dataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(self.appDocker, jsonFile, indent=4)
+            with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
+                json.dump(UserData.appDocker, jsonFile, indent=4)
+        if not os.path.exists(UserData.settingsDataFileName):
+            with open(UserData.settingsDataFileName, 'w', encoding='utf-8') as jsonFile:
+                json.dump(UserData.settingsData, jsonFile, indent=4)
+        # 保存数据
+        with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
+            json.dump(UserData.appDocker, jsonFile, indent=4)
+        with open(UserData.settingsDataFileName, 'w', encoding='utf-8') as jsonFile:
+            json.dump(UserData.settingsData, jsonFile, indent=4)
   
     # 更新数据
-    def updateAppDockerPath(self, row: int, col: int, path: str):
-        if row in self.appDocker and col in self.appDocker[row]:
-            self.appDocker[row][col]['path'] = path
+    @ staticmethod
+    def updateAppDockerPath(row: int, col: int, path: str):
+        if row in UserData.appDocker and col in UserData.appDocker[row]:
+            UserData.appDocker[row][col]['path'] = path
 
     # 显示数据
-    def displayData(self):
-        for row in self.appDocker:
-            for col in self.appDocker[row]:
-                if self.appDocker[row][col]['path'] != 'none':
-                    print(f"{row}:{col}: {self.appDocker[row][col]}")
+    @ staticmethod
+    def displayData():
+        for row in UserData.appDocker:
+            for col in UserData.appDocker[row]:
+                if UserData.appDocker[row][col]['path'] != 'none':
+                    print(f"{row}:{col}: {UserData.appDocker[row][col]}")
         print(f"================")
 
 
 class StyleSheetData():
-    def __init__(self):
-        pass
+    lightTheme = None
+    darkTheme = None
+    macaronTheme = None
+    themeStyle = {
+        'light':lightTheme,
+        'dark':darkTheme,
+        'macaron':macaronTheme,
+        }
+    labelStyle = None
 
     @ staticmethod
     def loadStyleSheetData(filename):
         with open(filename, 'r', encoding='utf-8') as file:
             return file.read()
-        
+    
+    @ staticmethod
+    def initialize():
+        StyleSheetData.labelStyle = StyleSheetData.loadStyleSheetData("theme\\labelStyleSheet.qss")
+        StyleSheetData.lightTheme = StyleSheetData.loadStyleSheetData("theme\\lightTheme.qss")
+        StyleSheetData.darkTheme = StyleSheetData.loadStyleSheetData("theme\\darkTheme.qss")
+        StyleSheetData.macaronTheme = StyleSheetData.loadStyleSheetData("theme\\MacaronTheme.qss")

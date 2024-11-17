@@ -7,5 +7,7 @@ images/
 *.psd
 
 app_data.json
+settings.json
 test_window.py
-PrptableBox.ui
+PortableBox.ui
+Settings.ui

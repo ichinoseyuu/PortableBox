@@ -804,7 +804,6 @@ class Ui_MainWindow(object):
         self.FileName.setText(QCoreApplication.translate("MainWindow", u"\u7a0b\u5e8f\u540d\u79f0\uff1a", None))
         self.FileSize.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u5927\u5c0f\uff1a", None))
         self.FileNameLabel.setText("")
-        self.ButtonAdd.setText("")
         pass
     # retranslateUi
 

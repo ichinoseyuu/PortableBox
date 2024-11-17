@@ -4,6 +4,7 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt, QFileInfo, QProcess
 
 from Ui_PortableBox import Ui_MainWindow
+from SettingsForm import SettingsForm
 from over_widgets.OverQLabel import OverQLabel
 from data.DataManager import UserData, StyleSheetData
 from data.DataProcessThread import FolderSizeThread
@@ -12,43 +13,51 @@ from data.DataProcessThread import FolderSizeThread
 class PortableAppManager(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__(parent=None)
+        StyleSheetData.initialize()  # 加载样式数据
         self.setupUi(self)  # 设置界面
         self.UI_Init()  # 初始化UI
-        self.loadData()
+        
+        
 
     def UI_Init(self):
         self.setWindowFlags(Qt.FramelessWindowHint) # 表示窗口没有边框
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
-
         self.old_pos = None #移动窗口，上一次鼠标指针位置
-        self.styleData = StyleSheetData.loadStyleSheetData("theme\\styleSheet.qss")
         self.appLayouts ={
             0:{0:self.Col_00,1:self.Col_01,2:self.Col_02,3:self.Col_03,4:self.Col_04,5:self.Col_05,6:self.Col_06,7:self.Col_07,8:self.Col_08,9:self.Col_09},
             1:{0:self.Col_10,1:self.Col_11,2:self.Col_12,3:self.Col_13,4:self.Col_14,5:self.Col_15,6:self.Col_16,7:self.Col_17,8:self.Col_18,9:self.Col_19},
             2:{0:self.Col_20,1:self.Col_21,2:self.Col_22,3:self.Col_23,4:self.Col_24,5:self.Col_25,6:self.Col_26,7:self.Col_27,8:self.Col_28,9:self.Col_29},
             3:{0:self.Col_30,1:self.Col_31,2:self.Col_32,3:self.Col_33,4:self.Col_34,5:self.Col_35,6:self.Col_36,7:self.Col_37,8:self.Col_38,9:self.Col_39}
             }
-        self.rowCount = self.appLayouts.__len__()
-        self.colCount = self.appLayouts[0].__len__()
+        self.rowCount = self.appLayouts.__len__() # 获取列数
+        self.colCount = self.appLayouts[0].__len__() # 获取行数
         print(self.rowCount,self.colCount)
-        self.userData = UserData((self.rowCount, self.colCount))
-        self.folderSizeThread = FolderSizeThread()
-        self.pointIsSelected = ()
+        self.folderSizeThread = FolderSizeThread() # 创建线程对象
+        self.pointIsSelected = () #记录当前选中的坐标
         # 连接按钮信号
         self.ButtonMin.clicked.connect(self.showMinimized) #最小化
         self.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出 
-        self.ButtonAdd.clicked.connect(self.addApp)
-        self.ButtonDel.clicked.connect(self.delApp)
+        self.ButtonAdd.clicked.connect(self.addApp) # 添加应用
+        self.ButtonDel.clicked.connect(self.delApp) # 删除应用
+
+        #创建子窗口
+        self.childWindow = SettingsForm(self)
+        self.childWindow.setWindowFlags(self.childWindow.windowFlags() | Qt.WindowStaysOnTopHint)
+        self.ButtonSettings.clicked.connect(lambda:self.childWindow.show())
+        
+        UserData.initialize((self.rowCount, self.colCount)) # 创建用户数据对象
+        self.loadData()
+        self.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']]) # 设置主题
         print("UI_Init done")
 
     def loadData(self):
-        self.userData.loadUserData()
+        UserData.loadUserData()
         iconProvider = QFileIconProvider() # 创建 QFileIconProvider 对象，用来获取exe图标
-        for row in self.userData.appDocker:
-            for col in self.userData.appDocker[row]:
-                if self.userData.appDocker[row][col]['path'] != 'none':
+        for row in UserData.appDocker:
+            for col in UserData.appDocker[row]:
+                if UserData.appDocker[row][col]['path'] != 'none':
                     #self.addAppInData(row, col, f'{self.userData.appDocker[row][col]['path']}')
-                    fileInfo = QFileInfo(f'{self.userData.appDocker[row][col]['path']}') # 获取文件路径的信息
+                    fileInfo = QFileInfo(f'{UserData.appDocker[row][col]['path']}') # 获取文件路径的信息
                     icon = iconProvider.icon(fileInfo) # 获取exe图标
                     pixmap = QPixmap(icon.pixmap(48, 48))  # 将图标转换为 QPixmap 对象
                     scaledPixmap = pixmap.scaled(48, 48, Qt.KeepAspectRatio, Qt.SmoothTransformation)
@@ -62,7 +71,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
 
     
     def saveData(self):
-        self.userData.saveUserData()
+        UserData.saveUserData()
         print("saveData done")
 
 
@@ -159,7 +168,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             layout.addWidget(label) #添加到布局中
             label.setPixmap(scaledPixmap) # 设置图标
             label.info = fileInfo # 存储文件信息
-            self.userData.updateAppDockerPath(row, col,f'{fileInfo.absoluteFilePath()}') # 更新数据
+            UserData.updateAppDockerPath(row, col,f'{fileInfo.absoluteFilePath()}') # 更新数据
 
 
     # 打开app
@@ -173,18 +182,18 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         layout = self.getLayoutByTuple(self.pointIsSelected)
         label = layout.itemAt(0).widget()
         layout.removeWidget(label) # 删除布局中的控件
-        self.userData.updateAppDockerPath(self.pointIsSelected[0], self.pointIsSelected[1], 'none')
+        UserData.updateAppDockerPath(self.pointIsSelected[0], self.pointIsSelected[1], 'none')
         label.deleteLater() # 删除控件
         print(f'app{self.pointIsSelected}is deleted')
         self.updateAllLabels(self.pointIsSelected[0],self.pointIsSelected[1])
         self.pointIsSelected = ()
         self.updateLabelText()
-        self.userData.displayData()
+        UserData.displayData()
 
     def updateAllLabels(self, row: int, col: int):
         # 当前列是最后一列，在最后一行
         if col == self.colCount - 1 and row + 1 == self.rowCount: 
-            self.userData.updateAppDockerPath(row, col, 'none') # 更新数据
+            UserData.updateAppDockerPath(row, col, 'none') # 更新数据
             return
         # 当前列是最后一列，但不在最后一行
         if col == self.colCount - 1:
@@ -195,8 +204,8 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             layoutNextRow.removeWidget(label)
             layoutLast.addWidget(label)
             label.point = (row, col)
-            self.userData.updateAppDockerPath(row + 1, 0, 'none') # 更新数据
-            self.userData.updateAppDockerPath(row, col, f'{label.info.absoluteFilePath()}')
+            UserData.updateAppDockerPath(row + 1, 0, 'none') # 更新数据
+            UserData.updateAppDockerPath(row, col, f'{label.info.absoluteFilePath()}')
             return self.updateAllLabels(row + 1, 0)
         # 当前列不是最后一列
         layoutLast = self.getLayout(row, col)
@@ -206,8 +215,8 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         layout.removeWidget(label)
         layoutLast.addWidget(label)
         label.point = (row, col)
-        self.userData.updateAppDockerPath(row, col + 1, 'none') # 更新数据
-        self.userData.updateAppDockerPath(row, col, f'{label.info.absoluteFilePath()}') # 更新数据
+        UserData.updateAppDockerPath(row, col + 1, 'none') # 更新数据
+        UserData.updateAppDockerPath(row, col, f'{label.info.absoluteFilePath()}') # 更新数据
         return self.updateAllLabels(row, col + 1)
     
     def moveLabel(self, point: tuple[int,int], targetPoint: tuple[int,int]):
