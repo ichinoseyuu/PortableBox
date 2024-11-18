@@ -2,6 +2,12 @@ __pycache__/
 .vscode/
 images/
 backup/
+build/
+dist/
+
+app_data.json
+settings.json
+test_window.py
 
 *.pyc
 *.png
@@ -10,3 +16,4 @@ backup/
 app_data.json
 settings.json
 test_window.py
+PortableManager.spec
