@@ -16,8 +16,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         StyleSheetData.initialize()  # 加载样式数据
         self.setupUi(self)  # 设置界面
         self.UI_Init()  # 初始化UI
-        
-        
+             
 
     def UI_Init(self):
         self.setWindowFlags(Qt.FramelessWindowHint) # 表示窗口没有边框
@@ -34,6 +33,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         print(self.rowCount,self.colCount)
         self.folderSizeThread = FolderSizeThread() # 创建线程对象
         self.pointIsSelected = () #记录当前选中的坐标
+        self.selectLabel = None #记录当前选中的label
         # 连接按钮信号
         self.ButtonMin.clicked.connect(self.showMinimized) #最小化
         self.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出 
@@ -44,10 +44,12 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         self.childWindow = SettingsForm(self)
         self.childWindow.setWindowFlags(self.childWindow.windowFlags() | Qt.WindowStaysOnTopHint)
         self.ButtonSettings.clicked.connect(lambda:self.childWindow.show())
-        
         UserData.initialize((self.rowCount, self.colCount)) # 创建用户数据对象
+
         self.loadData()
         self.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']]) # 设置主题
+        self.childWindow.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+        self.childWindow.upDateState() # 更新主题显示
         print("UI_Init done")
 
     def loadData(self):

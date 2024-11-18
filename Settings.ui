@@ -23,8 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 11pt &quot;微软雅黑&quot;;
-background-color: rgb(202, 116, 151);
+    <string notr="true">
 </string>
    </property>
    <layout class="QHBoxLayout">
@@ -46,11 +45,7 @@ background-color: rgb(202, 116, 151);
     <item>
      <widget class="QLabel" name="Title">
       <property name="styleSheet">
-       <string notr="true">QLabel{
-    color: rgb(241, 241, 184);
-	background-color: rgba(200 ,200, 200,0);
-	qproperty-alignment: AlignCenter;
-}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>设置</string>
@@ -85,14 +80,7 @@ background-color: rgb(202, 116, 151);
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-	border: 0px;
-    border-radius: 8px;
-	background-color: rgb(255, 190, 0);}
-QPushButton:hover {
-	background-color: rgb(170, 170, 255);}
-QPushButton:pressed {
-	background-color: rgb(0, 170, 255);}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -130,14 +118,7 @@ QPushButton:pressed {
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-	border: 0px;
-    border-radius: 8px;
-	background-color: rgb(255, 60, 0);}
-QPushButton:hover {
-	background-color: rgb(170, 170, 255);}
-QPushButton:pressed {
-	background-color: rgb(0, 170, 255);}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string/>
@@ -146,7 +127,7 @@ QPushButton:pressed {
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="Backboard" native="true">
+  <widget class="QWidget" name="BackBoard" native="true">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -156,8 +137,7 @@ QPushButton:pressed {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 10pt &quot;微软雅黑&quot;;
-background-color: rgba(241, 239, 212, 240)</string>
+    <string notr="true"/>
    </property>
    <widget class="QTabWidget" name="TabWidget">
     <property name="geometry">
@@ -169,56 +149,15 @@ background-color: rgba(241, 239, 212, 240)</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">QTabWidget {
-    padding: 2px;
-}
-
-QTabWidget::pane {
-    border: none;  /* 去除面板的边框 */
-}
-
-QTabBar {
-    padding: 2px;
-}
-
-QTabBar::tab {
-    background-color: #f5f5f5;  /* 选项卡背景 */
-    color: #333;  /* 文字颜色 */
-    border: 1px solid #dcdcdc;  /* 选项卡的边框 */
-    padding: 5px 10px;  /* 内边距 */
-    margin-right: 0px;  /* 选项卡之间的间距 */
-    border-radius: 0px;
-}
-
-QTabBar::tab:selected {
-    background-color: #ffffff;  /* 选中的选项卡背景 */
-    color: #000000;  /* 选中时的文字颜色 */
-    border-color: #0078d4;  /* 选中时的边框颜色 */
-}
-
-QTabBar::tab:hover {
-    background-color: #e0e0e0;  /* 鼠标悬停时的背景 */
-}
-
-QTabBar::tab:!selected {
-    background-color: #f5f5f5;  /* 非选中时的背景 */
-}
-
-QTabBar::close-button {
-    image: url(data:image/svg+xml;base64,...);  /* 设置关闭按钮的图标 */
-    width: 12px;
-    height: 12px;
-}
-
-QTabBar::close-button:hover {
-    background-color: #ff0000;  /* 鼠标悬停时关闭按钮背景 */
-}
-</string>
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <widget class="QWidget" name="Theme">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <attribute name="title">
       <string>主题</string>
      </attribute>
@@ -227,61 +166,23 @@ QTabBar::close-button:hover {
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>211</width>
+        <width>181</width>
         <height>22</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QPushButton" name="ButtonSave">
-      <property name="geometry">
-       <rect>
-        <x>430</x>
-        <y>320</y>
-        <width>71</width>
-        <height>38</height>
-       </rect>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>38</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <family>微软雅黑</family>
-        <pointsize>10</pointsize>
-        <italic>false</italic>
-        <bold>false</bold>
-       </font>
-      </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-	background-color: rgb(241, 204, 184);
-	border: none;
-}
-QPushButton:hover {
-	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
-	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); 
-	color: #555;
-	border: 1px solid rgb(212, 208, 255);
-}
-QPushButton:pressed {
-	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
-		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));
-	border: 1px solid rgb(212, 208, 255);
-}</string>
-      </property>
-      <property name="text">
-       <string>保存</string>
+       <string notr="true"/>
       </property>
      </widget>
     </widget>
     <widget class="QWidget" name="About">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <attribute name="title">
       <string>关于</string>
      </attribute>
-     <widget class="QTextBrowser" name="textBrowser">
+     <widget class="QTextBrowser" name="AboutContent">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -291,29 +192,7 @@ QPushButton:pressed {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QTextBrowser {
-	background-color: rgba(255, 255, 255, 0);
-	border:none;
-    padding: 5px;
-}
-QTextBrowser::verticalScrollBar {
-    width: 10px;
-    background-color: #ddd;
-    border: none;
-    border-radius: 5px;
-}
-QTextBrowser::verticalScrollBar::handle {
-    background-color: #999;
-    border: none;
-    border-radius: 5px;
-}
-QTextBrowser::verticalScrollBar, 
-QTextBrowser::horizontalScrollBar {
-	width: 0px;
-	height: 0px;
-	background: transparent;
-	border: none;
-}</string>
+       <string notr="true"/>
       </property>
       <property name="html">
        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -322,17 +201,17 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'微软雅黑'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#2d2d2d;&quot;&gt;关于作者&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;开发者：ichinoseyuu &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;联系方式：1915914448@qq.com&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700; color:#2d2d2d;&quot;&gt;关于软件&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;软件名称：PortableBox&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;版本：v1.0b&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;版权信息：版权所有 © 2024 ichinoseyuu 保留所有权利&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;使用条款：本程序仅用于学习和个人用途，不得用于商业目的.&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;隐私政策：本程序不会收集任何用户数据&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:9pt; color:#2d2d2d;&quot;&gt;免责声明：对于因使用本程序造成的任何损失，作者概不负责.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; font-size:10pt; font-weight:700; color:#565656;&quot;&gt;关于作者&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;开发者：ichinoseyuu &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;联系方式：1915914448@qq.com&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; font-size:10pt; font-weight:700; color:#565656;&quot;&gt;关于软件&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;软件名称：PortableBox&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;版本：v1.0b&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;版权信息：版权所有 © 2024 ichinoseyuu 保留所有权利&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;使用条款：本程序仅用于学习和个人用途，不得用于商业目的.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;隐私政策：本程序不会收集任何用户数据&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑'; color:#565656;&quot;&gt;免责声明：对于因使用本程序造成的任何损失，作者概不负责.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="ButtonBlog">
@@ -359,21 +238,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton {
-	background-color: rgb(241, 204, 184);
-	border: none;
-}
-QPushButton:hover {
-	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
-	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); 
-	color: #555;
-	border: 1px solid rgb(212, 208, 255);
-}
-QPushButton:pressed {
-	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, 
-		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));
-	border: 1px solid rgb(212, 208, 255);
-}</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>去踩一踩我的主页  (｡•̀ᴗ-)✧</string>

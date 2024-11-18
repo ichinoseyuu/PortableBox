@@ -28,14 +28,11 @@ class Ui_MainWindow(object):
         MainWindow.setMinimumSize(QSize(741, 624))
         self.BackGroundWidget = QWidget(MainWindow)
         self.BackGroundWidget.setObjectName(u"BackGroundWidget")
-        self.BackGroundWidget.setStyleSheet(u"QWidget{background-color: rgba(255, 254, 244, 250);}\n"
-"")
+        self.BackGroundWidget.setStyleSheet(u"")
         self.TitleWidget = QWidget(self.BackGroundWidget)
         self.TitleWidget.setObjectName(u"TitleWidget")
         self.TitleWidget.setGeometry(QRect(0, 0, 741, 31))
-        self.TitleWidget.setStyleSheet(u"font: 11pt \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"background-color: rgb(202, 116, 151);\n"
-"")
+        self.TitleWidget.setStyleSheet(u"")
         self.hboxLayout = QHBoxLayout(self.TitleWidget)
         self.hboxLayout.setSpacing(6)
         self.hboxLayout.setObjectName(u"hboxLayout")
@@ -56,11 +53,7 @@ class Ui_MainWindow(object):
 
         self.Title = QLabel(self.TitleWidget)
         self.Title.setObjectName(u"Title")
-        self.Title.setStyleSheet(u"QLabel{\n"
-"    color: rgb(241, 241, 184);\n"
-"	background-color: rgba(200 ,200, 200,0);\n"
-"	qproperty-alignment: AlignCenter;\n"
-"}")
+        self.Title.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.Title)
 
@@ -72,14 +65,7 @@ class Ui_MainWindow(object):
         self.ButtonMin.setObjectName(u"ButtonMin")
         self.ButtonMin.setMinimumSize(QSize(16, 16))
         self.ButtonMin.setMaximumSize(QSize(16, 16))
-        self.ButtonMin.setStyleSheet(u"QPushButton {\n"
-"	border: 0px;\n"
-"    border-radius: 8px;\n"
-"	background-color: rgb(255, 190, 0);}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(170, 170, 255);}\n"
-"QPushButton:pressed {\n"
-"	background-color: rgb(0, 170, 255);}")
+        self.ButtonMin.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.ButtonMin)
 
@@ -91,14 +77,7 @@ class Ui_MainWindow(object):
         self.ButtonExit.setObjectName(u"ButtonExit")
         self.ButtonExit.setMinimumSize(QSize(16, 16))
         self.ButtonExit.setMaximumSize(QSize(16, 16))
-        self.ButtonExit.setStyleSheet(u"QPushButton {\n"
-"	border: 0px;\n"
-"    border-radius: 8px;\n"
-"	background-color: rgb(255, 60, 0);}\n"
-"QPushButton:hover {\n"
-"	background-color: rgb(170, 170, 255);}\n"
-"QPushButton:pressed {\n"
-"	background-color: rgb(0, 170, 255);}")
+        self.ButtonExit.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.ButtonExit)
 
@@ -110,28 +89,27 @@ class Ui_MainWindow(object):
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.InfoWidget.sizePolicy().hasHeightForWidth())
         self.InfoWidget.setSizePolicy(sizePolicy1)
-        self.InfoWidget.setStyleSheet(u"QWidget{\n"
-"	background-color: rgb(234, 214, 229);}")
+        self.InfoWidget.setStyleSheet(u"")
         self.gridLayout = QGridLayout(self.InfoWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.TargetPath = QLabel(self.InfoWidget)
         self.TargetPath.setObjectName(u"TargetPath")
         self.TargetPath.setMinimumSize(QSize(80, 20))
         self.TargetPath.setMaximumSize(QSize(80, 20))
-        self.TargetPath.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.TargetPath.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.TargetPath, 5, 0, 1, 1)
 
         self.FileSizeLabel = QLabel(self.InfoWidget)
         self.FileSizeLabel.setObjectName(u"FileSizeLabel")
-        self.FileSizeLabel.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.FileSizeLabel.setStyleSheet(u"")
         self.FileSizeLabel.setWordWrap(True)
 
         self.gridLayout.addWidget(self.FileSizeLabel, 1, 1, 1, 1)
 
         self.CreateTimeLabel = QLabel(self.InfoWidget)
         self.CreateTimeLabel.setObjectName(u"CreateTimeLabel")
-        self.CreateTimeLabel.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.CreateTimeLabel.setStyleSheet(u"")
         self.CreateTimeLabel.setWordWrap(True)
 
         self.gridLayout.addWidget(self.CreateTimeLabel, 3, 1, 1, 1)
@@ -140,7 +118,7 @@ class Ui_MainWindow(object):
         self.TotalSize.setObjectName(u"TotalSize")
         self.TotalSize.setMinimumSize(QSize(80, 20))
         self.TotalSize.setMaximumSize(QSize(80, 20))
-        self.TotalSize.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.TotalSize.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.TotalSize, 6, 0, 1, 1)
 
@@ -148,27 +126,27 @@ class Ui_MainWindow(object):
         self.LastModifiedTime.setObjectName(u"LastModifiedTime")
         self.LastModifiedTime.setMinimumSize(QSize(80, 20))
         self.LastModifiedTime.setMaximumSize(QSize(80, 20))
-        self.LastModifiedTime.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.LastModifiedTime.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.LastModifiedTime, 2, 0, 1, 1)
 
         self.LastModifiedLabel = QLabel(self.InfoWidget)
         self.LastModifiedLabel.setObjectName(u"LastModifiedLabel")
-        self.LastModifiedLabel.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.LastModifiedLabel.setStyleSheet(u"")
         self.LastModifiedLabel.setWordWrap(True)
 
         self.gridLayout.addWidget(self.LastModifiedLabel, 2, 1, 1, 1)
 
         self.AddTimeLabel = QLabel(self.InfoWidget)
         self.AddTimeLabel.setObjectName(u"AddTimeLabel")
-        self.AddTimeLabel.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.AddTimeLabel.setStyleSheet(u"")
         self.AddTimeLabel.setWordWrap(True)
 
         self.gridLayout.addWidget(self.AddTimeLabel, 4, 1, 1, 1)
 
         self.TargetPathLine = QLineEdit(self.InfoWidget)
         self.TargetPathLine.setObjectName(u"TargetPathLine")
-        self.TargetPathLine.setStyleSheet(u"QLineEdit{border:none;color: rgb(170, 91, 113);}")
+        self.TargetPathLine.setStyleSheet(u"")
         self.TargetPathLine.setReadOnly(True)
 
         self.gridLayout.addWidget(self.TargetPathLine, 5, 1, 1, 1)
@@ -177,7 +155,7 @@ class Ui_MainWindow(object):
         self.CreateTime.setObjectName(u"CreateTime")
         self.CreateTime.setMinimumSize(QSize(80, 20))
         self.CreateTime.setMaximumSize(QSize(80, 20))
-        self.CreateTime.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.CreateTime.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.CreateTime, 3, 0, 1, 1)
 
@@ -185,13 +163,13 @@ class Ui_MainWindow(object):
         self.AddTime.setObjectName(u"AddTime")
         self.AddTime.setMinimumSize(QSize(80, 20))
         self.AddTime.setMaximumSize(QSize(80, 20))
-        self.AddTime.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.AddTime.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.AddTime, 4, 0, 1, 1)
 
         self.TotalSizeLabel = QLabel(self.InfoWidget)
         self.TotalSizeLabel.setObjectName(u"TotalSizeLabel")
-        self.TotalSizeLabel.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.TotalSizeLabel.setStyleSheet(u"")
         self.TotalSizeLabel.setWordWrap(True)
 
         self.gridLayout.addWidget(self.TotalSizeLabel, 6, 1, 1, 1)
@@ -200,7 +178,7 @@ class Ui_MainWindow(object):
         self.FileName.setObjectName(u"FileName")
         self.FileName.setMinimumSize(QSize(80, 20))
         self.FileName.setMaximumSize(QSize(80, 20))
-        self.FileName.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.FileName.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.FileName, 0, 0, 1, 1)
 
@@ -208,13 +186,13 @@ class Ui_MainWindow(object):
         self.FileSize.setObjectName(u"FileSize")
         self.FileSize.setMinimumSize(QSize(80, 20))
         self.FileSize.setMaximumSize(QSize(80, 20))
-        self.FileSize.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.FileSize.setStyleSheet(u"")
 
         self.gridLayout.addWidget(self.FileSize, 1, 0, 1, 1)
 
         self.FileNameLabel = QLabel(self.InfoWidget)
         self.FileNameLabel.setObjectName(u"FileNameLabel")
-        self.FileNameLabel.setStyleSheet(u"QLabel{color: rgb(170, 91, 113);}")
+        self.FileNameLabel.setStyleSheet(u"")
         self.FileNameLabel.setWordWrap(True)
 
         self.gridLayout.addWidget(self.FileNameLabel, 0, 1, 1, 1)
@@ -224,7 +202,7 @@ class Ui_MainWindow(object):
         self.BtnWidget.setGeometry(QRect(0, 31, 741, 41))
         sizePolicy1.setHeightForWidth(self.BtnWidget.sizePolicy().hasHeightForWidth())
         self.BtnWidget.setSizePolicy(sizePolicy1)
-        self.BtnWidget.setStyleSheet(u"QWidget{background-color:rgb(241, 204, 184);}")
+        self.BtnWidget.setStyleSheet(u"")
         self.layoutWidget = QWidget(self.BtnWidget)
         self.layoutWidget.setObjectName(u"layoutWidget")
         self.layoutWidget.setGeometry(QRect(0, 0, 741, 41))
@@ -244,22 +222,8 @@ class Ui_MainWindow(object):
         font.setBold(False)
         font.setItalic(False)
         self.ButtonAdd.setFont(font)
-        self.ButtonAdd.setStyleSheet(u"QPushButton {\n"
-"	background-color: rgba(255, 255, 255, 0);\n"
-"	border: none;\n"
-"	image: url(:/btn/images/add_64px.png);\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); \n"
-"	color: #555;\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}")
+        self.ButtonAdd.setStyleSheet(u"image: url(:/btn/images/add_64px.png);\n"
+"")
 
         self.horizontalLayout_7.addWidget(self.ButtonAdd)
 
@@ -270,21 +234,7 @@ class Ui_MainWindow(object):
         self.ButtonDel.setMinimumSize(QSize(32, 32))
         self.ButtonDel.setMaximumSize(QSize(32, 32))
         self.ButtonDel.setFont(font)
-        self.ButtonDel.setStyleSheet(u"QPushButton {\n"
-"	image: url(:/btn/images/del_64px.png);\n"
-"	border: none;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); \n"
-"	color: #555;\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}")
+        self.ButtonDel.setStyleSheet(u"image: url(:/btn/images/del_64px.png);")
 
         self.horizontalLayout_7.addWidget(self.ButtonDel)
 
@@ -295,21 +245,8 @@ class Ui_MainWindow(object):
         self.ButtonSelectMore.setMinimumSize(QSize(32, 32))
         self.ButtonSelectMore.setMaximumSize(QSize(32, 32))
         self.ButtonSelectMore.setFont(font)
-        self.ButtonSelectMore.setStyleSheet(u"QPushButton {\n"
-"	image: url(:/btn/images/select_more_64px.png);\n"
-"	border: none;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); \n"
-"	color: #555;\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}")
+        self.ButtonSelectMore.setStyleSheet(u"image: url(:/btn/images/select_more_64px.png);\n"
+"")
 
         self.horizontalLayout_7.addWidget(self.ButtonSelectMore)
 
@@ -320,21 +257,9 @@ class Ui_MainWindow(object):
         self.ButtonSettings.setMinimumSize(QSize(32, 32))
         self.ButtonSettings.setMaximumSize(QSize(32, 32))
         self.ButtonSettings.setFont(font)
-        self.ButtonSettings.setStyleSheet(u"QPushButton {\n"
-"	image: url(:/btn/images/settings_64px.png);\n"
-"	border: none;\n"
-"}\n"
-"QPushButton:hover {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"	stop: 0 rgba(236, 210, 226, 255), stop: 1 rgb(220, 223, 243)); \n"
-"	color: #555;\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"	background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, \n"
-"		stop: 0 rgba(212, 212, 236, 255), stop: 1 rgba(226, 207, 216, 255));\n"
-"	border: 1px solid rgb(212, 208, 255);\n"
-"}")
+        self.ButtonSettings.setStyleSheet(u"image: url(:/btn/images/settings_64px.png);\n"
+"\n"
+"")
 
         self.horizontalLayout_7.addWidget(self.ButtonSettings)
 
@@ -345,13 +270,13 @@ class Ui_MainWindow(object):
         self.BackWidget = QWidget(self.BackGroundWidget)
         self.BackWidget.setObjectName(u"BackWidget")
         self.BackWidget.setGeometry(QRect(0, 72, 741, 321))
-        self.BackWidget.setStyleSheet(u"QWidget{background-color: rgba(241, 239, 212, 240)}")
+        self.BackWidget.setStyleSheet(u"")
         self.AppWidget = QWidget(self.BackWidget)
         self.AppWidget.setObjectName(u"AppWidget")
         self.AppWidget.setGeometry(QRect(50, 10, 644, 303))
         sizePolicy1.setHeightForWidth(self.AppWidget.sizePolicy().hasHeightForWidth())
         self.AppWidget.setSizePolicy(sizePolicy1)
-        self.AppWidget.setStyleSheet(u"QWidget{background-color: rgb(242, 222, 189);border-radius:5px;}")
+        self.AppWidget.setStyleSheet(u"")
         self.gridLayout_2 = QGridLayout(self.AppWidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.Row_0 = QGridLayout()

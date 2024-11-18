@@ -26,28 +26,37 @@ class SettingsForm(QWidget, Ui_Form):
         self.ButtonBlog.clicked.connect(self.openMyBlog)# 跳转的我的主页
         #self.ButtonSave.clicked.connect(self.saveSettings)#保存设置
 
+
     def openMyBlog(self):
         webbrowser.open('https://ichinoseyuu.github.io/')
 
     def changeTheme(self):
         if self.ThemeSelects.currentText() == "浅色模式":
             UserData.settingsData['theme'] = 'light'
-            self.parent.setStyleSheet(StyleSheetData.themeStyle['light'])
-            self.setStyleSheet(StyleSheetData.themeStyle['light'])
-            self.parent.update()
-            self.update()
+            self.parent.setStyleSheet(StyleSheetData.lightTheme)
+            self.setStyleSheet(StyleSheetData.lightTheme)
+
         elif self.ThemeSelects.currentText() == "深色模式":
             UserData.settingsData['theme'] = 'dark'
-            self.parent.setStyleSheet(StyleSheetData.themeStyle['dark'])
-            self.setStyleSheet(StyleSheetData.themeStyle['dark'])
-            self.parent.update()
-            self.update()
+            self.parent.setStyleSheet(StyleSheetData.darkTheme)
+            self.setStyleSheet(StyleSheetData.darkTheme)
+
         elif self.ThemeSelects.currentText() == "马卡龙配色":
             UserData.settingsData['theme'] = 'macaron'
-            self.parent.setStyleSheet(StyleSheetData.themeStyle['macaron'])
-            self.setStyleSheet(StyleSheetData.themeStyle['macaron'])
-            self.parent.update()
-            self.update()
+            self.parent.setStyleSheet(StyleSheetData.macaronTheme)
+            self.setStyleSheet(StyleSheetData.macaronTheme)
+            
+        if not self.parent.pointIsSelected: return
+        self.parent.selectLabel.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+
+
+    def upDateState(self):
+        if UserData.settingsData['theme'] == 'light':
+            self.ThemeSelects.setCurrentText("浅色模式")
+        elif UserData.settingsData['theme'] == 'dark':
+            self.ThemeSelects.setCurrentText("深色模式")
+        elif UserData.settingsData['theme'] == 'macaron':
+            self.ThemeSelects.setCurrentText("马卡龙配色")
 
 
     #拖动窗口相关函数 mousePressEvent mouseMoveEvent mouseReleaseEvent

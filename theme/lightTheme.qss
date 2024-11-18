@@ -1,0 +1,224 @@
+/* ----------------------------------- 标题栏 ---------------------------------- */
+#TitleWidget {
+    background-color: rgb(230, 230, 230);
+    border-bottom: 1px solid lightgrey;
+}
+
+#Title {
+    font: 11pt "微软雅黑";
+    color: black;
+    background-color: transparent;
+}
+
+#ButtonMin {
+    border: 0px;
+    border-radius: 8px;
+    background-color: rgb(255, 190, 0);
+}
+
+#ButtonMin:hover {
+    background-color: rgb(170, 170, 255);
+}
+
+#ButtonMin:pressed {
+    background-color: rgb(0, 170, 255);
+}
+
+#ButtonExit {
+    border: 0px;
+    border-radius: 8px;
+    background-color: rgb(255, 60, 0);
+}
+
+#ButtonExit:hover {
+    background-color: rgb(170, 170, 255);
+}
+
+#ButtonExit:pressed {
+    background-color: rgb(0, 170, 255);
+}
+
+/* ------------------------------ 主窗口软件信息栏 ---------------------------- */
+#InfoWidget {
+    background-color: rgb(235, 235, 235);
+}
+
+#InfoWidget QLabel {
+    color: dimgray;
+}
+
+#InfoWidget QLineEdit {
+    border: none;
+    background-color: transparent;
+    color: dimgray;
+}
+
+/* -------------------------------- 主窗口按钮栏 ----------------------------- */
+#BtnWidget {
+    background-color: rgb(235, 235, 235);
+}
+
+#BtnWidget QPushButton {
+    background-color: transparent;
+    border: none;
+}
+
+#BtnWidget QPushButton:hover {
+    background-color: lightgray;
+    border: 1px solid silver;
+}
+
+#BtnWidget QPushButton:pressed {
+    background-color: silver;
+    border: 1px solid silver;
+}
+
+
+/* ---------------------------- 主窗口主背景栏 ------------------------------- */
+#BackWidget {
+    background-color: whitesmoke;
+}
+
+#AppWidget {
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
+}
+
+/* ------------------------------ 设置窗口背景栏 ----------------------------- */
+#BackBoard {
+    font: 10pt "微软雅黑";
+    background-color: whitesmoke;
+    border-top: 1px solid lightgrey;
+}
+
+QTabWidget {
+    padding: 2px;
+}
+
+QTabWidget::pane {
+    border: none;
+}
+
+QTabBar::tab {
+    background-color: rgb(240, 240, 240);
+    font: 9pt;
+    color: dimgray;
+    padding: 5px 10px;
+    margin-top: 3px;
+}
+
+QTabBar::tab:selected {
+    background-color: rgb(230, 230, 230);
+    font: 10pt;
+    font-weight: bold;
+    padding: 7px 12px;
+    margin-top: 1px;
+}
+
+QTabBar::tab:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+/* ------------------------------ 设置窗口关于页 --------------------------- */
+
+#About {
+    background-color: rgb(230, 230, 230);
+}
+
+#AboutContent {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(100, 100, 100);
+    border: none;
+    padding: 5px;
+}
+
+#AboutContent::verticalScrollBar {
+    width: 10px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+}
+
+#AboutContent::verticalScrollBar::handle {
+    background-color: #999;
+    border: none;
+    border-radius: 5px;
+}
+
+#AboutContent::verticalScrollBar,
+#AboutContent::horizontalScrollBar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+#About QPushButton {
+    background-color: rgb(220, 220, 220);
+    color: dimgray;
+    border: none;
+}
+
+#About QPushButton:hover {
+    background-color: lightgray;
+    border: 1px solid silver;
+}
+
+#About QPushButton:pressed {
+    background-color: silver;
+    border: 1px solid silver;
+}
+
+/* --------------------------- 设置窗口主题页 ------------------------------ */
+
+#Theme {
+    background-color: rgb(230, 230, 230);
+}
+
+#ThemeSelects {
+    color: dimgray;
+    border: 1px solid lightgray;
+    background-color: whitesmoke;
+}
+
+#ThemeSelects::drop-down {
+    width: 25px;
+    background-color: lightgray;
+}
+
+#ThemeSelects QAbstractItemView {
+    color: dimgray;
+    background-color: whitesmoke;
+    selection-background-color: lightgray;
+    selection-color: dimgray;
+}
+
+/* --------------------------- app样式 ------------------------------ */
+OverQLabel {
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+
+OverQLabel[isSelected="true"] {
+    border: 2px solid lightgray;
+    border-radius: 4px;
+}
+
+QMenu {
+    color: dimgray;
+    background-color: whitesmoke;
+    border: none;
+}
+
+QMenu::item {
+    height: auto;
+    width: auto;
+}
+
+QMenu::item:selected {
+    background-color: lightgray;
+}
+
+QMenu::item:disabled {
+    color: #AAAAAA;
+}

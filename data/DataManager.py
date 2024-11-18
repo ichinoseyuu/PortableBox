@@ -1,4 +1,6 @@
+from enum import Enum
 import os, json
+from PySide6.QtCore import QFile, QTextStream
 
 class UserData():
     appDataFileName = './data/app_data.json'
@@ -69,26 +71,26 @@ class UserData():
                     print(f"{row}:{col}: {UserData.appDocker[row][col]}")
         print(f"================")
 
-
+# 定义一个 Enum 来表示不同的主题
 class StyleSheetData():
     lightTheme = None
     darkTheme = None
     macaronTheme = None
-    themeStyle = {
-        'light':lightTheme,
-        'dark':darkTheme,
-        'macaron':macaronTheme,
-        }
-    labelStyle = None
+    themeStyle ={}
 
     @ staticmethod
     def loadStyleSheetData(filename):
         with open(filename, 'r', encoding='utf-8') as file:
             return file.read()
+
     
     @ staticmethod
     def initialize():
-        StyleSheetData.labelStyle = StyleSheetData.loadStyleSheetData("theme\\labelStyleSheet.qss")
         StyleSheetData.lightTheme = StyleSheetData.loadStyleSheetData("theme\\lightTheme.qss")
         StyleSheetData.darkTheme = StyleSheetData.loadStyleSheetData("theme\\darkTheme.qss")
         StyleSheetData.macaronTheme = StyleSheetData.loadStyleSheetData("theme\\MacaronTheme.qss")
+        StyleSheetData.themeStyle = {
+            "light": StyleSheetData.lightTheme,
+            "dark": StyleSheetData.darkTheme,
+            "macaron": StyleSheetData.macaronTheme
+            }

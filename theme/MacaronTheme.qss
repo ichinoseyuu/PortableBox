@@ -1,0 +1,221 @@
+/* ----------------------------------- 标题栏 ---------------------------------- */
+#TitleWidget {
+    background-color: rgb(202, 116, 151);
+}
+#Title{
+    font: 11pt "微软雅黑";
+    color: rgb(241, 241, 184);
+    background-color: transparent;
+}
+
+#ButtonMin {
+    border: 0px;
+    border-radius: 8px;
+    background-color: rgb(255, 190, 0);
+}
+
+#ButtonMin:hover {
+    background-color: rgb(170, 170, 255);
+}
+
+#ButtonMin:pressed {
+    background-color: rgb(0, 170, 255);
+}
+
+#ButtonExit {
+    border: 0px;
+    border-radius: 8px;
+    background-color: rgb(255, 60, 0);
+}
+
+#ButtonExit:hover {
+    background-color: rgb(170, 170, 255);
+}
+
+#ButtonExit:pressed {
+    background-color: rgb(0, 170, 255);
+}
+
+/* ------------------------------ 主窗口软件信息栏 ---------------------------- */
+#InfoWidget {
+    background-color: rgb(234, 214, 229);
+}
+#InfoWidget QLabel {
+    color: rgb(170, 91, 113);
+}
+
+#InfoWidget QLineEdit {
+    border: none;
+    background-color: transparent;
+    color: rgb(170, 91, 113);
+}
+
+/* -------------------------------- 主窗口按钮栏 ----------------------------- */
+#BtnWidget {
+    background-color: rgb(242, 222, 189);
+}
+#BtnWidget QPushButton {
+    background-color: transparent;
+    border: none;
+}
+
+#BtnWidget QPushButton:hover {
+    background-color: rgb(236, 210, 226);
+    border: 1px solid rgb(212, 208, 255);
+}
+
+#BtnWidget QPushButton:pressed {
+    background-color: rgb(220, 223, 243);
+    border: 1px solid rgb(212, 208, 255);
+}
+
+
+/* ---------------------------- 主窗口主背景栏 ------------------------------- */
+#BackWidget {
+    background-color: rgb(241, 239, 212);
+}
+
+#AppWidget {
+    background-color: rgb(242, 222, 189);
+    border-radius: 5px;
+}
+
+/* ------------------------------ 设置窗口背景栏 ----------------------------- */
+#BackBoard {
+    font: 10pt "微软雅黑";
+    background-color: rgb(241, 239, 212);
+}
+
+QTabWidget {
+    padding: 2px;
+}
+
+QTabWidget::pane {
+    border: none;
+}
+
+QTabBar::tab {
+    background-color: rgb(241, 239, 212);
+    font: 9pt;
+    color: rgb(170, 91, 113);
+    padding: 5px 10px;
+    margin-top: 3px;
+}
+
+QTabBar::tab:selected {
+    background-color: rgb(242, 222, 189);
+    font: 10pt;
+    font-weight: bold;
+    padding: 7px 12px;
+    margin-top: 1px;
+}
+
+QTabBar::tab:hover {
+    background-color: rgb(236, 210, 226);
+}
+
+/* ------------------------------ 设置窗口关于页 --------------------------- */
+
+#About {
+    background-color: rgb(242, 222, 189);
+    border: 1px solid rgb(234, 214, 229);
+}
+
+#AboutContent {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(100, 100, 100);
+    border: none;
+    padding: 5px;
+}
+
+#AboutContent::verticalScrollBar {
+    width: 10px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+}
+
+#AboutContent::verticalScrollBar::handle {
+    background-color: #999;
+    border: none;
+    border-radius: 5px;
+}
+
+#AboutContent::verticalScrollBar,
+#AboutContent::horizontalScrollBar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+#About QPushButton {
+    background-color: transparent;
+    color: rgb(170, 91, 113);
+    border: none;
+}
+
+#About QPushButton:hover {
+    background-color: rgb(236, 210, 226);
+    border: 1px solid rgb(212, 208, 255);
+}
+
+#About QPushButton:pressed {
+    background-color: rgb(220, 223, 243);
+    border: 1px solid rgb(212, 208, 255);
+}
+
+/* --------------------------- 设置窗口主题页 ------------------------------ */
+
+#Theme {
+    background-color: rgb(242, 222, 189);
+    border: 1px solid rgb(234, 214, 229);
+}
+
+#ThemeSelects {
+    color: rgb(170, 91, 113);
+    border: 1px solid rgb(234, 214, 229);
+    background-color: rgb(241, 239, 212);
+}
+
+#ThemeSelects::drop-down {
+    width: 25px;
+    background-color: rgb(234, 214, 229);
+}
+
+#ThemeSelects QAbstractItemView {
+    color: rgb(170, 91, 113);
+    background-color: rgb(241, 239, 212);
+    selection-background-color: rgb(234, 214, 229);
+    selection-color: rgb(170, 91, 113);
+}
+
+/* --------------------------- app样式 ------------------------------ */
+OverQLabel {
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+
+OverQLabel[isSelected="true"] {
+    border: 2px solid rgb(241, 184, 241);
+    border-radius: 4px;
+}
+
+QMenu {
+    color: rgb(170, 91, 113);
+    background-color: rgb(234, 214, 229);
+    border: none;
+}
+
+QMenu::item {
+    height: auto;
+    width: auto;
+}
+
+QMenu::item:selected {
+    background-color: rgb(207, 209, 225);
+}
+
+QMenu::item:disabled {
+    color: #AAAAAA;
+}
