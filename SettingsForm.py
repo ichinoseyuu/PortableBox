@@ -43,9 +43,13 @@ class SettingsForm(QWidget, Ui_Form):
             UserData.settingsData['theme'] = 'macaron'
             self.parent.setStyleSheet(StyleSheetData.macaronTheme)
             self.setStyleSheet(StyleSheetData.macaronTheme)
-            
-        if not self.parent.pointIsSelected: return
-        self.parent.selectLabel.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+
+        if not self.parent.isMultiSelectMode:  
+            if not self.parent.pointIsSelected: return
+            self.parent.selectLabel.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+        else:
+            for label in self.parent.selectedLabels:
+                label.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
 
 
     def upDateState(self):

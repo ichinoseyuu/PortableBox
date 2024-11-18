@@ -35,7 +35,7 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         self.isMultiSelectMode = False #选择模式，false为单选，True为多选
         self.pointIsSelected = () #记录单选模式选中的坐标
         self.selectLabel = None #记录单选模式选中的label
-        self.selectLabels = [] #记录多选模式选中的label
+        self.selectedLabels = [] #记录多选模式选中的label
         
         # 连接按钮信号
         self.ButtonMin.clicked.connect(self.showMinimized) #最小化
@@ -111,9 +111,9 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             self.selectLabel.deselect()
         else:
             # 变更模式之前为多选模式,取消所有选择
-            for label in self.selectLabels:
+            for label in self.selectedLabels:
                 label.deselect()
-            self.selectLabels = []
+            self.selectedLabels = []
 
     # 通过坐标获取组件
     def getLayout(self, row: int, col: int):
@@ -212,11 +212,11 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             self.updateLabelText()
             UserData.displayData()
         else:
-            for label in self.selectLabels:
+            for label in self.selectedLabels:
                 UserData.updateAppDockerPath(label.point[0], label.point[1], 'none')
                 label.deleteLater()
                 self.updateAllLabels(label.point[0],label.point[1]) # 依次更新所有控件的位置
-            self.selectLabels = []
+            self.selectedLabels = []
             self.updateLabelText()
             UserData.displayData()
 

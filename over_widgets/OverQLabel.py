@@ -61,36 +61,42 @@ class OverQLabel(QLabel):
                 self.isSelected = not self.isSelected # 切换当前点的选择状态
                 if self.isSelected:
                     self.displayInfo() # 如果当前点被选中，显示信息
-                    self.mainWindow.selectLabels.append(self)  # 添加当前选中的标签
+                    self.mainWindow.selectedLabels.append(self)  # 添加当前选中的标签
                 else: 
                     self.mainWindow.updateLabelText() # 如果当前点被取消选中，清空信息
                     self.deselect()
                     #self.mainWindow.getSelectedLabel().deselect()  # 取消选中的点
-                    self.mainWindow.selectLabels.remove(self) # 移除最后一个标签
-                
-                pass
-              
+                    self.mainWindow.selectedLabels.remove(self) # 移除最后一个标签
 
         elif event.button() == Qt.RightButton:
-            if self.mainWindow.isMultiSelectMode: return
-            if self.selected:
-                self.showContextMenu(event) 
+            # 单选模式
+            if not self.mainWindow.isMultiSelectMode:
+                if self.selected:
+                    self.showContextMenu(event)
+            # 多选模式
+            elif self.mainWindow.isMultiSelectMode:
+                if self.selected:
+                    self.showContextMenuMultiSelectMode(event)
         #super(OverQLabel, self).mousePressEvent(event) #让父类方法仍然执行
 
     # 双击打开
     def mouseDoubleClickEvent(self,event):
-        event.button() == Qt.LeftButton
-        self.mainWindow.openApp(self.info.absoluteFilePath())
+        if event.button() == Qt.LeftButton:  # 检查是否是左键
+            self.mainWindow.openApp(self.info.absoluteFilePath())
         #super(OverQLabel, self).mouseDoubleClickEvent() #让父类方法仍然执行
 
     # 右键菜单
     def showContextMenu(self, event):
         contextMenu = QMenu(self)
-        
         contextMenu.addAction("运行", lambda:self.mainWindow.openApp(self.info.absoluteFilePath()))
         contextMenu.addAction("在资源管理器中显示", lambda:self.showInExplorer(self.info.canonicalPath()))
-        contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp())
-        
+        contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp()) 
+        contextMenu.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+        contextMenu.exec(event.globalPos())
+
+    def showContextMenuMultiSelectMode(self, event):
+        contextMenu = QMenu(self)
+        contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp()) 
         contextMenu.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
         contextMenu.exec(event.globalPos())
 
