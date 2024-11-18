@@ -15,7 +15,7 @@ class OverQLabel(QLabel):
         self.info = None
         self.addTime= QDateTime.currentDateTime().toString("yyyy-MM-dd hh:mm:ss")
 
-    def dispalyInfo(self):
+    def displayInfo(self):
         self.mainWindow.FileNameLabel.setText(self.info.baseName())
         self.mainWindow.TargetPathLine.setText(self.info.absoluteFilePath())
         self.mainWindow.AddTimeLabel.setText(self.addTime)
@@ -46,21 +46,33 @@ class OverQLabel(QLabel):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            if self.mainWindow.pointIsSelected == self.point: return
-            # 设置当前标签为选中状态
-            self.dispalyInfo()
-            self.isSelected = not self.isSelected
-            if self.mainWindow.pointIsSelected:
-                self.mainWindow.getSelectedLabel().deselect()
-                self.mainWindow.pointIsSelected = self.point
-                self.mainWindow.selectLabel = self
-            else:
-                self.mainWindow.pointIsSelected = self.point
-                self.mainWindow.selectLabel = self
-            print(f"app{self.point} is selected")
+            # 单选模式
+            if not self.mainWindow.isMultiSelectMode:
+                if self.mainWindow.pointIsSelected == self.point: return # 如果当前点已经被选中，直接返回
+                self.displayInfo()
+                self.isSelected = not self.isSelected # 切换当前点的选择状态
+                if self.mainWindow.pointIsSelected:  # 如果已有选中的点
+                    self.mainWindow.getSelectedLabel().deselect()  # 取消之前选中的点
+                self.mainWindow.pointIsSelected = self.point  # 更新为当前选中的点
+                self.mainWindow.selectLabel = self  # 更新当前选中的标签
+                print(f"app{self.point} is selected")
+            # 多选模式
+            elif self.mainWindow.isMultiSelectMode:
+                self.isSelected = not self.isSelected # 切换当前点的选择状态
+                if self.isSelected:
+                    self.displayInfo() # 如果当前点被选中，显示信息
+                    self.mainWindow.selectLabels.append(self)  # 添加当前选中的标签
+                else: 
+                    self.mainWindow.updateLabelText() # 如果当前点被取消选中，清空信息
+                    self.deselect()
+                    #self.mainWindow.getSelectedLabel().deselect()  # 取消选中的点
+                    self.mainWindow.selectLabels.remove(self) # 移除最后一个标签
+                
+                pass
               
 
         elif event.button() == Qt.RightButton:
+            if self.mainWindow.isMultiSelectMode: return
             if self.selected:
                 self.showContextMenu(event) 
         #super(OverQLabel, self).mousePressEvent(event) #让父类方法仍然执行

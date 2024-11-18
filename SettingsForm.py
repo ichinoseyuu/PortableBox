@@ -14,9 +14,7 @@ class SettingsForm(QWidget, Ui_Form):
         self.old_pos = None #移动窗口，上一次鼠标指针位置
 
         # 设置主题选项
-        self.ThemeSelects.addItem("浅色模式")
-        self.ThemeSelects.addItem("深色模式")
-        self.ThemeSelects.addItem("马卡龙配色")
+        self.ThemeSelects.addItems(["浅色模式","深色模式","马卡龙"])
         # 连接 QComboBox 的信号（用户选择项时触发）
         self.ThemeSelects.currentIndexChanged.connect(self.changeTheme)
 
@@ -41,7 +39,7 @@ class SettingsForm(QWidget, Ui_Form):
             self.parent.setStyleSheet(StyleSheetData.darkTheme)
             self.setStyleSheet(StyleSheetData.darkTheme)
 
-        elif self.ThemeSelects.currentText() == "马卡龙配色":
+        elif self.ThemeSelects.currentText() == "马卡龙":
             UserData.settingsData['theme'] = 'macaron'
             self.parent.setStyleSheet(StyleSheetData.macaronTheme)
             self.setStyleSheet(StyleSheetData.macaronTheme)
@@ -56,7 +54,7 @@ class SettingsForm(QWidget, Ui_Form):
         elif UserData.settingsData['theme'] == 'dark':
             self.ThemeSelects.setCurrentText("深色模式")
         elif UserData.settingsData['theme'] == 'macaron':
-            self.ThemeSelects.setCurrentText("马卡龙配色")
+            self.ThemeSelects.setCurrentText("马卡龙")
 
 
     #拖动窗口相关函数 mousePressEvent mouseMoveEvent mouseReleaseEvent

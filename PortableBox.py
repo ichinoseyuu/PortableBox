@@ -32,13 +32,17 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         self.colCount = self.appLayouts[0].__len__() # 获取行数
         print(self.rowCount,self.colCount)
         self.folderSizeThread = FolderSizeThread() # 创建线程对象
-        self.pointIsSelected = () #记录当前选中的坐标
-        self.selectLabel = None #记录当前选中的label
+        self.isMultiSelectMode = False #选择模式，false为单选，True为多选
+        self.pointIsSelected = () #记录单选模式选中的坐标
+        self.selectLabel = None #记录单选模式选中的label
+        self.selectLabels = [] #记录多选模式选中的label
+        
         # 连接按钮信号
         self.ButtonMin.clicked.connect(self.showMinimized) #最小化
         self.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出 
         self.ButtonAdd.clicked.connect(self.addApp) # 添加应用
         self.ButtonDel.clicked.connect(self.delApp) # 删除应用
+        self.ButtonSelectMore.clicked.connect(self.changeSelectMode) # 选择更多
 
         #创建子窗口
         self.childWindow = SettingsForm(self)
@@ -97,6 +101,19 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
     def mouseReleaseEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.old_pos = None  # 释放鼠标时重置旧位置
+
+    def changeSelectMode(self):
+        # 变更模式
+        self.isMultiSelectMode = not self.isMultiSelectMode
+        if self.pointIsSelected:
+            # 变更模式之前为单选模式,取消选择
+            self.pointIsSelected = ()
+            self.selectLabel.deselect()
+        else:
+            # 变更模式之前为多选模式,取消所有选择
+            for label in self.selectLabels:
+                label.deselect()
+            self.selectLabels = []
 
     # 通过坐标获取组件
     def getLayout(self, row: int, col: int):
@@ -180,17 +197,28 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
 
     # 删除app
     def delApp(self):
-        if not self.pointIsSelected: return
-        layout = self.getLayoutByTuple(self.pointIsSelected)
-        label = layout.itemAt(0).widget()
-        layout.removeWidget(label) # 删除布局中的控件
-        UserData.updateAppDockerPath(self.pointIsSelected[0], self.pointIsSelected[1], 'none')
-        label.deleteLater() # 删除控件
-        print(f'app{self.pointIsSelected}is deleted')
-        self.updateAllLabels(self.pointIsSelected[0],self.pointIsSelected[1])
-        self.pointIsSelected = ()
-        self.updateLabelText()
-        UserData.displayData()
+        if not self.isMultiSelectMode:
+            if not self.pointIsSelected: return
+            # layout = self.getLayoutByTuple(self.pointIsSelected) # 通过坐标获取子控件的容器
+            # label = layout.itemAt(0).widget() # 获取第一个子控件
+            # layout.removeWidget(label) # 删除布局中的控件
+            # UserData.updateAppDockerPath(self.pointIsSelected[0], self.pointIsSelected[1], 'none')
+            # label.deleteLater() # 删除控件
+            UserData.updateAppDockerPath(self.selectLabel.point[0], self.selectLabel.point[1], 'none')
+            self.selectLabel.deleteLater() # 删除控件
+            print(f'app{self.pointIsSelected}is deleted')
+            self.updateAllLabels(self.pointIsSelected[0],self.pointIsSelected[1]) # 依次更新所有控件的位置
+            self.pointIsSelected = ()
+            self.updateLabelText()
+            UserData.displayData()
+        else:
+            for label in self.selectLabels:
+                UserData.updateAppDockerPath(label.point[0], label.point[1], 'none')
+                label.deleteLater()
+                self.updateAllLabels(label.point[0],label.point[1]) # 依次更新所有控件的位置
+            self.selectLabels = []
+            self.updateLabelText()
+            UserData.displayData()
 
     def updateAllLabels(self, row: int, col: int):
         # 当前列是最后一列，在最后一行
