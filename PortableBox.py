@@ -1,5 +1,5 @@
 import sys
-from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QFileIconProvider
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow, QFileIconProvider,QLabel
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt, QFileInfo, QProcess
 
@@ -42,7 +42,11 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         self.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出 
         self.ButtonAdd.clicked.connect(self.addApp) # 添加应用
         self.ButtonDel.clicked.connect(self.delApp) # 删除应用
-        self.ButtonSelectMore.clicked.connect(self.changeSelectMode) # 选择更多
+        self.ButtonMultiSelect.clicked.connect(self.changeSelectMode) # 选择更多
+        self.ButtonSelectAll.setEnabled(False)
+        self.ButtonUnselectAll.setEnabled(False)
+        self.ButtonSelectAll.clicked.connect(self.selectAll) # 全选
+        self.ButtonUnselectAll.clicked.connect(self.unSelectAll) # 全不选
 
         #创建子窗口
         self.childWindow = SettingsForm(self)
@@ -51,12 +55,15 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
         UserData.initialize((self.rowCount, self.colCount)) # 创建用户数据对象
 
         self.loadData()
-        self.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']]) # 设置主题
-        self.childWindow.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
         self.childWindow.upDateState() # 更新主题显示
+        self.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])
+        self.childWindow.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])
+        self.childWindow.changeFont() 
+
         print("UI_Init done")
 
     def loadData(self):
+        UserData.checkDataPathIsExist()
         UserData.loadUserData()
         iconProvider = QFileIconProvider() # 创建 QFileIconProvider 对象，用来获取exe图标
         for row in UserData.appDocker:
@@ -103,17 +110,38 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             self.old_pos = None  # 释放鼠标时重置旧位置
 
     def changeSelectMode(self):
-        # 变更模式
+        # 切换模式 
         self.isMultiSelectMode = not self.isMultiSelectMode
-        if self.pointIsSelected:
-            # 变更模式之前为单选模式,取消选择
+        if self.isMultiSelectMode:
+            # 切换前为单选模式
+            self.ButtonMultiSelect.setChecked(True)
+            self.ButtonSelectAll.setEnabled(True)
+            self.ButtonUnselectAll.setEnabled(True)
+            if not self.pointIsSelected:return 
+            # 取消选择
             self.pointIsSelected = ()
             self.selectLabel.deselect()
         else:
-            # 变更模式之前为多选模式,取消所有选择
+            # 切换前为多选模式
+            self.ButtonMultiSelect.setChecked(False)
+            self.ButtonSelectAll.setEnabled(False)
+            self.ButtonUnselectAll.setEnabled(False)
+            if not self.selectedLabels:return
+            # 取消所有选择
             for label in self.selectedLabels:
                 label.deselect()
             self.selectedLabels = []
+
+    def selectAll(self):
+        labels = self.getAllLabels()
+        for label in labels:
+            label.select()
+        self.selectedLabels = labels
+
+    def unSelectAll(self):
+        for label in self.getAllLabels():
+            label.deselect()
+        self.selectedLabels = []
 
     # 通过坐标获取组件
     def getLayout(self, row: int, col: int):
@@ -128,12 +156,14 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             return
         layout = self.getLayoutByTuple(self.pointIsSelected)
         return layout.itemAt(0).widget()
+        # region 旧方法
         # 1：return [layout.itemAt(i).widget() for i in range(layout.count())]
         # 2：# 遍历布局中的每个项
         #   for i in range(layout.count()):
         #       item = layout.itemAt(i)  # 获取布局中的第 i 项
         #       if isinstance(widget, OverQLabel):  # 检查部件是否是 OverQLabel
         #           over_labels.append(widget)  # 将 OverQLabel 添加到列表中 
+        # endregion
     
     # 判断是否为空
     def isEmpty(self, row: int, col: int) -> bool:
@@ -168,7 +198,19 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
     # 获取所有非空组件中的labels
     def getAllLabels(self):
         layouts = self.getNonEmptyLayouts()
-        return [layouts.itemAt(i).widget() for i in range(layouts.count())]
+        return [layout.itemAt(i).widget() for layout in layouts
+                for i in range(layout.count())
+                if isinstance(layout.itemAt(i).widget(), OverQLabel)]
+        # region 旧方法
+        # labels = []
+        # for layout in layouts:
+        #     # 使用 len() 获取布局中项的数量
+        #     for i in range(layout.count()):
+        #         widget = layout.itemAt(i).widget()
+        #         if isinstance(widget, OverQLabel):  # 确保控件是 OverQLabel
+        #             labels.append(widget)
+        # return labels
+        # endregion
     
     # 添加app
     def addApp(self):
@@ -265,9 +307,9 @@ class PortableAppManager(QMainWindow, Ui_MainWindow):
             self.FileNameLabel.setText('')
             self.TargetPathLine.setText('')
             self.AddTimeLabel.setText('')
-            self.CreateTimeLabel.setText('')
-            self.LastModifiedLabel.setText('')
-            self.FileSizeLabel.setText('')
+            #self.CreateTimeLabel.setText('')
+            #self.LastModifiedLabel.setText('')
+            #self.FileSizeLabel.setText('')
             self.TotalSizeLabel.setText('') 
            
 if __name__ == "__main__":

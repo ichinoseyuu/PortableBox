@@ -1,5 +1,5 @@
 import webbrowser
-from PySide6.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget, QApplication, QLabel, QLineEdit
 from PySide6.QtCore import Qt
 from Ui_Settings import Ui_Form
 from data.DataManager import UserData, StyleSheetData
@@ -14,52 +14,60 @@ class SettingsForm(QWidget, Ui_Form):
         self.old_pos = None #移动窗口，上一次鼠标指针位置
 
         # 设置主题选项
-        self.ThemeSelects.addItems(["浅色模式","深色模式","马卡龙"])
+        self.ThemeSelect.addItems(['浅色模式','深色模式','马卡龙'])
         # 连接 QComboBox 的信号（用户选择项时触发）
-        self.ThemeSelects.currentIndexChanged.connect(self.changeTheme)
+        self.ThemeSelect.currentIndexChanged.connect(self.changeTheme)
+        self.FontSelect.addItems(["微软雅黑","幼圆","宋体","楷体","黑体"])
+        # 连接 QComboBox 的信号（用户选择项时触发）
+        self.FontSelect.currentIndexChanged.connect(self.changeFont)
 
         # 关于窗口绑定按钮的点击事件
         self.ButtonMin.clicked.connect(self.showMinimized) #最小化
         self.ButtonExit.clicked.connect(self.close)#关闭窗口
-        self.ButtonBlog.clicked.connect(self.openMyBlog)# 跳转的我的主页
+        self.ButtonBlog.clicked.connect(lambda:self.openWeb('https://ichinoseyuu.github.io/'))# 跳转的我的主页
+        self.ButtonGithub.clicked.connect(lambda:self.openWeb('https://github.com/ichinoseyuu'))# 跳转的我的github
         #self.ButtonSave.clicked.connect(self.saveSettings)#保存设置
 
 
-    def openMyBlog(self):
-        webbrowser.open('https://ichinoseyuu.github.io/')
+    def openWeb(self, url):
+        webbrowser.open(url)
 
     def changeTheme(self):
-        if self.ThemeSelects.currentText() == "浅色模式":
-            UserData.settingsData['theme'] = 'light'
-            self.parent.setStyleSheet(StyleSheetData.lightTheme)
-            self.setStyleSheet(StyleSheetData.lightTheme)
-
-        elif self.ThemeSelects.currentText() == "深色模式":
-            UserData.settingsData['theme'] = 'dark'
-            self.parent.setStyleSheet(StyleSheetData.darkTheme)
-            self.setStyleSheet(StyleSheetData.darkTheme)
-
-        elif self.ThemeSelects.currentText() == "马卡龙":
-            UserData.settingsData['theme'] = 'macaron'
-            self.parent.setStyleSheet(StyleSheetData.macaronTheme)
-            self.setStyleSheet(StyleSheetData.macaronTheme)
-
+        # 获取当前选择的主题
+        selectedTheme = StyleSheetData.getThemeNameEN(self.ThemeSelect.currentText())
+        # 更新 UserData 设置
+        UserData.settingsData['theme'] = selectedTheme
+        # 设置样式表
+        self.parent.setStyleSheet(StyleSheetData.themeMap[selectedTheme])
+        self.setStyleSheet(StyleSheetData.themeMap[selectedTheme])
+        # 打印当前选择的主题
+        print(f"current_theme: {selectedTheme}")
+        # 刷新选择框
         if not self.parent.isMultiSelectMode:  
             if not self.parent.pointIsSelected: return
-            self.parent.selectLabel.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+            self.parent.selectLabel.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])
         else:
+            if not self.parent.selectedLabels: return
             for label in self.parent.selectedLabels:
-                label.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+                label.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])
+        
+
+    def changeFont(self):
+        # 获取当前选择的字体
+        selectedFont = self.FontSelect.currentText()
+        # 更新 UserData 设置
+        UserData.settingsData['font'] = selectedFont
+        # 设置字体
+        app = QApplication.instance()
+        for widget in app.allWidgets():
+            widget.setFont(StyleSheetData.fontMap[selectedFont])
+        print(f"current_font: {selectedFont}")
 
 
     def upDateState(self):
-        if UserData.settingsData['theme'] == 'light':
-            self.ThemeSelects.setCurrentText("浅色模式")
-        elif UserData.settingsData['theme'] == 'dark':
-            self.ThemeSelects.setCurrentText("深色模式")
-        elif UserData.settingsData['theme'] == 'macaron':
-            self.ThemeSelects.setCurrentText("马卡龙")
-
+        theme = StyleSheetData.getThemeNameCN(UserData.settingsData['theme'])
+        self.ThemeSelect.setCurrentText(theme)
+        self.FontSelect.setCurrentText(UserData.settingsData['font'])
 
     #拖动窗口相关函数 mousePressEvent mouseMoveEvent mouseReleaseEvent
     def mousePressEvent(self, event):

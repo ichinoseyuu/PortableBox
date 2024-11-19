@@ -1,11 +1,12 @@
 /* ----------------------------------- 标题栏 ---------------------------------- */
+
 #TitleWidget {
     background-color: rgb(50, 50, 50);
     border-bottom: 1px solid black;
 }
 
 #Title {
-    font: 11pt "微软雅黑";
+    font: 11pt;
     color: whitesmoke;
     background-color: transparent;
 }
@@ -40,17 +41,19 @@
 
 /* ------------------------------ 主窗口软件信息栏 ---------------------------- */
 #InfoWidget {
-    background-color: rgb(70, 70, 70);
+    background-color: rgb(100, 100, 100);
 }
 
 #InfoWidget QLabel {
-    color: rgb(200, 200, 200);
+    font: 10pt;
+    color: gainsboro;
 }
 
 #InfoWidget QLineEdit {
+    font: 10pt;
     border: none;
     background-color: transparent;
-    color: rgb(200, 200, 200);
+    color: gainsboro;
 }
 
 /* -------------------------------- 主窗口按钮栏 ----------------------------- */
@@ -71,7 +74,6 @@
     background-color: rgb(180, 180, 180);
 }
 
-
 /* ---------------------------- 主窗口主背景栏 ------------------------------- */
 #BackWidget {
     background-color: rgb(150, 150, 150);
@@ -81,10 +83,33 @@
     background-color: dimgray;
     border-radius: 5px;
 }
+/* ------------------------------ 状态窗口栏 --------------------------------- */
+#StatusWidget {
+    background-color: rgb(100, 100, 100);
+}
 
+#StatusWidget QRadioButton {
+    font: 10pt;
+    color: gainsboro;
+}
+
+#StatusWidget QRadioButton::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+#StatusWidget QRadioButton::indicator:checked {
+    background-color: gainsboro;
+    border: 2px solid rgb(180, 180, 180);
+}
+
+#StatusWidget QRadioButton::indicator:unchecked {
+    background-color: dimgray;
+    border: 2px solid rgb(180, 180, 180);
+}
 /* ------------------------------ 设置窗口背景栏 ----------------------------- */
 #BackBoard {
-    font: 10pt "微软雅黑";
+    font: 10pt;
     background-color: rgb(150, 150, 150);
     border-top: 1px solid black;
 }
@@ -99,7 +124,7 @@ QTabWidget::pane {
 
 QTabBar::tab {
     background-color: rgb(150, 150, 150);
-    font: 9pt;
+    font: 10pt;
     color: gainsboro;
     padding: 5px 10px;
     margin-top: 3px;
@@ -125,7 +150,7 @@ QTabBar::tab:hover {
 
 #AboutContent {
     background-color: transparent;
-    color: rgb(100, 100, 100);
+    color: silver;
     border: none;
     padding: 5px;
 }
@@ -152,7 +177,8 @@ QTabBar::tab:hover {
 }
 
 #About QPushButton {
-    background-color: dimgray;
+    font: 10pt;
+    background-color: transparent;
     color: gainsboro;
     border: none;
 }
@@ -165,30 +191,45 @@ QTabBar::tab:hover {
     background-color: rgb(125, 125, 125);
 }
 
-/* --------------------------- 设置窗口主题页 ------------------------------ */
+/* --------------------------- 样式窗口主题页 ------------------------------ */
 
-#Theme {
+#Style {
     background-color: rgb(120, 120, 120);
 }
 
-#ThemeSelects {
+#Style QComboBox {
+    font: 10pt;
     color: gainsboro;
     border: 1px solid silver;
     background-color: rgb(120, 120, 120);
 }
 
-#ThemeSelects::drop-down {
+#Style QComboBox::drop-down {
     width: 25px;
     background-color: dimgray;
 }
 
-#ThemeSelects QAbstractItemView {
+#Style QComboBox QAbstractItemView {
+    font: 10pt;
     color: gainsboro;
     background-color: rgb(120, 120, 120);
-    selection-background-color: rgb(140, 140, 140);
-    selection-color: whitesmoke;
+    outline: none;
 }
 
+#Style QComboBox QAbstractItemView::item:hover {
+    background-color: rgb(160, 160, 160);
+    color: gainsboro;
+}
+
+#Style QComboBox QAbstractItemView::item:selected {
+    background-color: rgb(160, 160, 160);
+    color: gainsboro;
+}
+
+#Style QLabel {
+    font: 10pt;
+    color: gainsboro;
+}
 /* --------------------------- app样式 ------------------------------ */
 OverQLabel {
     border: 2px solid transparent;
@@ -201,9 +242,10 @@ OverQLabel[isSelected="true"] {
 }
 
 QMenu {
+    font: 10pt;
     color: gainsboro;
     background-color: dimgray;
-    border: none;
+    border: 1px solid silver;
 }
 
 QMenu::item {
@@ -218,3 +260,11 @@ QMenu::item:selected {
 QMenu::item:disabled {
     color: #AAAAAA;
 }
+
+QToolTip {
+    font: 10pt;
+    background-color: dimgray;
+    color: gainsboro;
+    border: 1px solid silver;
+}
+

@@ -1,9 +1,10 @@
 /* ----------------------------------- 标题栏 ---------------------------------- */
+
 #TitleWidget {
     background-color: rgb(202, 116, 151);
 }
 #Title{
-    font: 11pt "微软雅黑";
+    font: 11pt;
     color: rgb(241, 241, 184);
     background-color: transparent;
 }
@@ -38,13 +39,16 @@
 
 /* ------------------------------ 主窗口软件信息栏 ---------------------------- */
 #InfoWidget {
-    background-color: rgb(234, 214, 229);
+    background-color: rgb(241, 239, 212);
 }
+
 #InfoWidget QLabel {
+    font: 10pt;
     color: rgb(170, 91, 113);
 }
 
 #InfoWidget QLineEdit {
+    font: 10pt;
     border: none;
     background-color: transparent;
     color: rgb(170, 91, 113);
@@ -76,13 +80,38 @@
 }
 
 #AppWidget {
-    background-color: rgb(242, 222, 189);
+    background-color: rgb(244, 225, 196);
     border-radius: 5px;
+}
+
+/* ------------------------------ 状态窗口栏 --------------------------------- */
+#StatusWidget {
+    background-color: rgb(244, 225, 196);
+}
+
+#StatusWidget QRadioButton {
+    font: 10pt;
+    color: rgb(170, 91, 113);
+}
+
+#StatusWidget QRadioButton::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+#StatusWidget QRadioButton::indicator:checked {
+    background-color: rgb(170, 91, 113);
+    border: 2px solid rgb(234, 202, 226);
+}
+
+#StatusWidget QRadioButton::indicator:unchecked {
+    background-color: rgb(244, 225, 196);
+    border: 2px solid rgb(234, 202, 226);
 }
 
 /* ------------------------------ 设置窗口背景栏 ----------------------------- */
 #BackBoard {
-    font: 10pt "微软雅黑";
+    font: 10pt;
     background-color: rgb(241, 239, 212);
 }
 
@@ -96,7 +125,7 @@ QTabWidget::pane {
 
 QTabBar::tab {
     background-color: rgb(241, 239, 212);
-    font: 9pt;
+    font: 10pt;
     color: rgb(170, 91, 113);
     padding: 5px 10px;
     margin-top: 3px;
@@ -118,38 +147,10 @@ QTabBar::tab:hover {
 
 #About {
     background-color: rgb(242, 222, 189);
-    border: 1px solid rgb(234, 214, 229);
-}
-
-#AboutContent {
-    background-color: rgba(255, 255, 255, 0);
-    color: rgb(100, 100, 100);
-    border: none;
-    padding: 5px;
-}
-
-#AboutContent::verticalScrollBar {
-    width: 10px;
-    background-color: #ddd;
-    border: none;
-    border-radius: 5px;
-}
-
-#AboutContent::verticalScrollBar::handle {
-    background-color: #999;
-    border: none;
-    border-radius: 5px;
-}
-
-#AboutContent::verticalScrollBar,
-#AboutContent::horizontalScrollBar {
-    width: 0px;
-    height: 0px;
-    background: transparent;
-    border: none;
 }
 
 #About QPushButton {
+    font: 10pt;
     background-color: transparent;
     color: rgb(170, 91, 113);
     border: none;
@@ -165,29 +166,73 @@ QTabBar::tab:hover {
     border: 1px solid rgb(212, 208, 255);
 }
 
-/* --------------------------- 设置窗口主题页 ------------------------------ */
-
-#Theme {
-    background-color: rgb(242, 222, 189);
-    border: 1px solid rgb(234, 214, 229);
+#About QTextBrowser {
+    background-color: transparent;
+    color: #aa5b71;
+    border: none;
+    padding: 5px;
 }
 
-#ThemeSelects {
+#About QTextBrowser::verticalScrollBar {
+    width: 10px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+}
+
+#About QTextBrowser::verticalScrollBar::handle {
+    background-color: #999;
+    border: none;
+    border-radius: 5px;
+}
+
+#About QTextBrowser::verticalScrollBar,
+#About QTextBrowser::horizontalScrollBar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+
+
+/* --------------------------- 样式窗口主题页 ------------------------------ */
+
+#Style {
+    background-color: rgb(242, 222, 189);
+}
+
+#Style QComboBox {
+    font: 10pt;
     color: rgb(170, 91, 113);
     border: 1px solid rgb(234, 214, 229);
     background-color: rgb(241, 239, 212);
 }
 
-#ThemeSelects::drop-down {
+#Style QComboBox::drop-down {
     width: 25px;
     background-color: rgb(234, 214, 229);
 }
 
-#ThemeSelects QAbstractItemView {
+#Style QComboBox QAbstractItemView {
     color: rgb(170, 91, 113);
     background-color: rgb(241, 239, 212);
-    selection-background-color: rgb(234, 214, 229);
-    selection-color: rgb(170, 91, 113);
+    outline: none;
+}
+
+#Style QComboBox QAbstractItemView::item:hover {
+    background-color: rgb(234, 214, 229);
+    color: rgb(170, 91, 113);
+}
+
+#Style QComboBox QAbstractItemView::item:selected {
+    background-color: rgb(234, 214, 229);
+    color: rgb(170, 91, 113);
+}
+
+#Style QLabel {
+    font: 10pt;
+    color: rgb(170, 91, 113);
 }
 
 /* --------------------------- app样式 ------------------------------ */
@@ -202,9 +247,10 @@ OverQLabel[isSelected="true"] {
 }
 
 QMenu {
+    font: 10pt;
     color: rgb(170, 91, 113);
     background-color: rgb(234, 214, 229);
-    border: none;
+    border: 1px solid rgb(212, 208, 255);
 }
 
 QMenu::item {
@@ -218,4 +264,11 @@ QMenu::item:selected {
 
 QMenu::item:disabled {
     color: #AAAAAA;
+}
+
+QToolTip {
+    font: 10pt;
+    background-color: rgb(207, 209, 225);
+    color: rgb(170, 91, 113);
+    border: 1px solid rgb(212, 208, 255);
 }

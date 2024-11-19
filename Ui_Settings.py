@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
-    QPushButton, QSizePolicy, QSpacerItem, QTabWidget,
-    QTextBrowser, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QFormLayout, QHBoxLayout,
+    QLabel, QPushButton, QSizePolicy, QSpacerItem,
+    QTabWidget, QTextBrowser, QVBoxLayout, QWidget)
+import Images_rc
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -27,14 +28,12 @@ class Ui_Form(object):
         self.TitleWidget = QWidget(Form)
         self.TitleWidget.setObjectName(u"TitleWidget")
         self.TitleWidget.setGeometry(QRect(0, 0, 511, 31))
-        self.TitleWidget.setStyleSheet(u"")
         self.hboxLayout = QHBoxLayout(self.TitleWidget)
         self.hboxLayout.setSpacing(6)
         self.hboxLayout.setObjectName(u"hboxLayout")
         self.hboxLayout.setContentsMargins(15, 0, 15, 0)
         self.Title = QLabel(self.TitleWidget)
         self.Title.setObjectName(u"Title")
-        self.Title.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.Title)
 
@@ -46,7 +45,6 @@ class Ui_Form(object):
         self.ButtonMin.setObjectName(u"ButtonMin")
         self.ButtonMin.setMinimumSize(QSize(16, 16))
         self.ButtonMin.setMaximumSize(QSize(16, 16))
-        self.ButtonMin.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.ButtonMin)
 
@@ -58,44 +56,96 @@ class Ui_Form(object):
         self.ButtonExit.setObjectName(u"ButtonExit")
         self.ButtonExit.setMinimumSize(QSize(16, 16))
         self.ButtonExit.setMaximumSize(QSize(16, 16))
-        self.ButtonExit.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.ButtonExit)
 
         self.BackBoard = QWidget(Form)
         self.BackBoard.setObjectName(u"BackBoard")
         self.BackBoard.setGeometry(QRect(0, 30, 511, 391))
-        self.BackBoard.setStyleSheet(u"")
         self.TabWidget = QTabWidget(self.BackBoard)
         self.TabWidget.setObjectName(u"TabWidget")
         self.TabWidget.setGeometry(QRect(0, 0, 511, 391))
-        self.TabWidget.setStyleSheet(u"")
-        self.Theme = QWidget()
+        self.Style = QWidget()
+        self.Style.setObjectName(u"Style")
+        self.formLayoutWidget = QWidget(self.Style)
+        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
+        self.formLayoutWidget.setGeometry(QRect(-1, -1, 511, 371))
+        self.formLayout = QFormLayout(self.formLayoutWidget)
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setContentsMargins(9, 9, 9, 9)
+        self.Theme = QLabel(self.formLayoutWidget)
         self.Theme.setObjectName(u"Theme")
-        self.Theme.setStyleSheet(u"")
-        self.ThemeSelects = QComboBox(self.Theme)
-        self.ThemeSelects.setObjectName(u"ThemeSelects")
-        self.ThemeSelects.setGeometry(QRect(10, 10, 181, 22))
-        self.ThemeSelects.setStyleSheet(u"")
-        self.TabWidget.addTab(self.Theme, "")
+        self.Theme.setMinimumSize(QSize(35, 20))
+        self.Theme.setMaximumSize(QSize(35, 20))
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.Theme)
+
+        self.ThemeSelect = QComboBox(self.formLayoutWidget)
+        self.ThemeSelect.setObjectName(u"ThemeSelect")
+        self.ThemeSelect.setMinimumSize(QSize(0, 24))
+        self.ThemeSelect.setMaximumSize(QSize(16777215, 24))
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.ThemeSelect)
+
+        self.Font = QLabel(self.formLayoutWidget)
+        self.Font.setObjectName(u"Font")
+        self.Font.setMinimumSize(QSize(35, 20))
+        self.Font.setMaximumSize(QSize(35, 20))
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.Font)
+
+        self.FontSelect = QComboBox(self.formLayoutWidget)
+        self.FontSelect.setObjectName(u"FontSelect")
+        self.FontSelect.setMinimumSize(QSize(0, 24))
+        self.FontSelect.setMaximumSize(QSize(16777215, 24))
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.FontSelect)
+
+        self.TabWidget.addTab(self.Style, "")
         self.About = QWidget()
         self.About.setObjectName(u"About")
-        self.About.setStyleSheet(u"")
         self.AboutContent = QTextBrowser(self.About)
         self.AboutContent.setObjectName(u"AboutContent")
-        self.AboutContent.setGeometry(QRect(0, 0, 511, 311))
-        self.AboutContent.setStyleSheet(u"")
-        self.ButtonBlog = QPushButton(self.About)
+        self.AboutContent.setGeometry(QRect(0, 0, 511, 361))
+        self.horizontalLayoutWidget = QWidget(self.About)
+        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
+        self.horizontalLayoutWidget.setGeometry(QRect(460, 0, 50, 131))
+        self.verticalLayout = QVBoxLayout(self.horizontalLayoutWidget)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(9, 9, 9, 0)
+        self.ButtonBlog = QPushButton(self.horizontalLayoutWidget)
         self.ButtonBlog.setObjectName(u"ButtonBlog")
-        self.ButtonBlog.setGeometry(QRect(160, 320, 191, 38))
-        self.ButtonBlog.setMaximumSize(QSize(16777215, 38))
+        self.ButtonBlog.setMinimumSize(QSize(32, 32))
+        self.ButtonBlog.setMaximumSize(QSize(32, 32))
         font = QFont()
         font.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
         font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
         self.ButtonBlog.setFont(font)
-        self.ButtonBlog.setStyleSheet(u"")
+        icon = QIcon()
+        icon.addFile(u":/btn/images/blog_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonBlog.setIcon(icon)
+        self.ButtonBlog.setIconSize(QSize(32, 32))
+
+        self.verticalLayout.addWidget(self.ButtonBlog)
+
+        self.ButtonGithub = QPushButton(self.horizontalLayoutWidget)
+        self.ButtonGithub.setObjectName(u"ButtonGithub")
+        self.ButtonGithub.setMinimumSize(QSize(32, 32))
+        self.ButtonGithub.setMaximumSize(QSize(32, 32))
+        self.ButtonGithub.setFont(font)
+        icon1 = QIcon()
+        icon1.addFile(u":/btn/images/github_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonGithub.setIcon(icon1)
+        self.ButtonGithub.setIconSize(QSize(32, 32))
+
+        self.verticalLayout.addWidget(self.ButtonGithub)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
         self.TabWidget.addTab(self.About, "")
 
         self.retranslateUi(Form)
@@ -107,11 +157,18 @@ class Ui_Form(object):
     # setupUi
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.Title.setText(QCoreApplication.translate("Form", u"\u8bbe\u7f6e", None))
+#if QT_CONFIG(tooltip)
+        self.ButtonMin.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>\u6700\u5c0f\u5316</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.ButtonMin.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonExit.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>\u5173\u95ed</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.ButtonExit.setText("")
-        self.TabWidget.setTabText(self.TabWidget.indexOf(self.Theme), QCoreApplication.translate("Form", u"\u4e3b\u9898", None))
+        self.Theme.setText(QCoreApplication.translate("Form", u"\u4e3b\u9898\uff1a", None))
+        self.Font.setText(QCoreApplication.translate("Form", u"\u5b57\u4f53\uff1a", None))
+        self.TabWidget.setTabText(self.TabWidget.indexOf(self.Style), QCoreApplication.translate("Form", u"\u6837\u5f0f", None))
         self.AboutContent.setHtml(QCoreApplication.translate("Form", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -132,7 +189,15 @@ class Ui_Form(object):
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\u5fae\u8f6f\u96c5\u9ed1'; color:#565656"
                         ";\">\u9690\u79c1\u653f\u7b56\uff1a\u672c\u7a0b\u5e8f\u4e0d\u4f1a\u6536\u96c6\u4efb\u4f55\u7528\u6237\u6570\u636e</span></p>\n"
 "<p align=\"center\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'\u5fae\u8f6f\u96c5\u9ed1'; color:#565656;\">\u514d\u8d23\u58f0\u660e\uff1a\u5bf9\u4e8e\u56e0\u4f7f\u7528\u672c\u7a0b\u5e8f\u9020\u6210\u7684\u4efb\u4f55\u635f\u5931\uff0c\u4f5c\u8005\u6982\u4e0d\u8d1f\u8d23.</span></p></body></html>", None))
-        self.ButtonBlog.setText(QCoreApplication.translate("Form", u"\u53bb\u8e29\u4e00\u8e29\u6211\u7684\u4e3b\u9875  (\uff61\u2022\u0300\u1d17-)\u2727", None))
+#if QT_CONFIG(tooltip)
+        self.ButtonBlog.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>\u8df3\u8f6c\u5230\u4f5c\u8005\u7684\u535a\u5ba2</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.ButtonBlog.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonGithub.setToolTip(QCoreApplication.translate("Form", u"<html><head/><body><p>\u8df3\u8f6c\u5230\u4f5c\u8005\u7684github\u4e3b\u9875</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+        self.ButtonGithub.setText("")
         self.TabWidget.setTabText(self.TabWidget.indexOf(self.About), QCoreApplication.translate("Form", u"\u5173\u4e8e", None))
+        pass
     # retranslateUi
 

@@ -11,7 +11,7 @@ class OverQLabel(QLabel):
         self.mainWindow = mainWindow 
         self.point = point
         self.selected = False  # 初始化为未选中状态
-        self.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']]) # 设置初始样式
+        self.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']]) # 设置初始样式
         self.info = None
         self.addTime= QDateTime.currentDateTime().toString("yyyy-MM-dd hh:mm:ss")
 
@@ -19,9 +19,9 @@ class OverQLabel(QLabel):
         self.mainWindow.FileNameLabel.setText(self.info.baseName())
         self.mainWindow.TargetPathLine.setText(self.info.absoluteFilePath())
         self.mainWindow.AddTimeLabel.setText(self.addTime)
-        self.mainWindow.CreateTimeLabel.setText(self.info.birthTime().toString("yyyy-MM-dd hh:mm:ss"))
-        self.mainWindow.LastModifiedLabel.setText(self.info.lastModified().toString("yyyy-MM-dd hh:mm:ss"))
-        self.mainWindow.FileSizeLabel.setText(f"{self.info.size()/1024.0/1024.0:.2f}"+" MB")
+        #self.mainWindow.CreateTimeLabel.setText(self.info.birthTime().toString("yyyy-MM-dd hh:mm:ss"))
+        #self.mainWindow.LastModifiedLabel.setText(self.info.lastModified().toString("yyyy-MM-dd hh:mm:ss"))
+        #self.mainWindow.FileSizeLabel.setText(f"{self.info.size()/1024.0/1024.0:.2f}"+" MB")
         #self.mainWindow.FileSizeLabel.setText("{:.2f} MB".format(self.info.size() / 1024.0 / 1024.0))
         self.getFolderSize(f'{self.info.canonicalPath()}')
     
@@ -39,7 +39,7 @@ class OverQLabel(QLabel):
     def isSelected(self, value):
         if self.selected != value:
             self.selected = value
-            self.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])  # 更新样式
+            self.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])  # 更新样式
 
     def updateIndex(self, index):
         self.index = index
@@ -91,21 +91,26 @@ class OverQLabel(QLabel):
         contextMenu.addAction("运行", lambda:self.mainWindow.openApp(self.info.absoluteFilePath()))
         contextMenu.addAction("在资源管理器中显示", lambda:self.showInExplorer(self.info.canonicalPath()))
         contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp()) 
-        contextMenu.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+        contextMenu.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])
         contextMenu.exec(event.globalPos())
 
     def showContextMenuMultiSelectMode(self, event):
         contextMenu = QMenu(self)
-        contextMenu.addAction("在PortableBox中删除", lambda:self.mainWindow.delApp()) 
-        contextMenu.setStyleSheet(StyleSheetData.themeStyle[UserData.settingsData['theme']])
+        action = QAction("在PortableBox中删除", self.mainWindow)
+        action.triggered.connect(lambda: self.mainWindow.delApp())
+        contextMenu.addAction(action)
+        contextMenu.setStyleSheet(StyleSheetData.themeMap[UserData.settingsData['theme']])
         contextMenu.exec(event.globalPos())
 
     # 设置为未选中状态
     def deselect(self):
         self.isSelected = False
 
+    def select(self):
+        self.isSelected = True
+
     def showInExplorer(self, filePath):
         filePath = os.path.normpath(filePath)
         if os.path.exists(filePath):
-            print(f"打开目录: {filePath}")
+            print(f"open: {filePath}")
             QProcess.startDetached("explorer", [filePath])

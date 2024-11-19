@@ -1,11 +1,12 @@
 /* ----------------------------------- 标题栏 ---------------------------------- */
+
 #TitleWidget {
     background-color: rgb(230, 230, 230);
     border-bottom: 1px solid lightgrey;
 }
 
 #Title {
-    font: 11pt "微软雅黑";
+    font: 11pt;
     color: black;
     background-color: transparent;
 }
@@ -44,10 +45,12 @@
 }
 
 #InfoWidget QLabel {
+    font: 10pt;
     color: dimgray;
 }
 
 #InfoWidget QLineEdit {
+    font: 10pt;
     border: none;
     background-color: transparent;
     color: dimgray;
@@ -56,6 +59,7 @@
 /* -------------------------------- 主窗口按钮栏 ----------------------------- */
 #BtnWidget {
     background-color: rgb(235, 235, 235);
+    border-bottom: 1px solid gainsboro;
 }
 
 #BtnWidget QPushButton {
@@ -83,10 +87,34 @@
     background-color: rgb(235, 235, 235);
     border-radius: 5px;
 }
+/* ------------------------------ 状态窗口栏 --------------------------------- */
+#StatusWidget {
+    background-color: rgb(235, 235, 235);
+    border-bottom: 1px solid gainsboro;
+}
 
+#StatusWidget QRadioButton {
+    font: 10pt;
+    color: dimgray;
+}
+
+#StatusWidget QRadioButton::indicator {
+    width: 10px;
+    height: 10px;
+}
+
+#StatusWidget QRadioButton::indicator:checked {
+    background-color: dimgray;
+    border: 2px solid silver;
+}
+
+#StatusWidget QRadioButton::indicator:unchecked {
+    background-color: gainsboro;
+    border: 2px solid silver;
+}
 /* ------------------------------ 设置窗口背景栏 ----------------------------- */
 #BackBoard {
-    font: 10pt "微软雅黑";
+    font: 10pt;
     background-color: whitesmoke;
     border-top: 1px solid lightgrey;
 }
@@ -101,7 +129,7 @@ QTabWidget::pane {
 
 QTabBar::tab {
     background-color: rgb(240, 240, 240);
-    font: 9pt;
+    font: 10pt;
     color: dimgray;
     padding: 5px 10px;
     margin-top: 3px;
@@ -126,8 +154,8 @@ QTabBar::tab:hover {
 }
 
 #AboutContent {
-    background-color: rgba(255, 255, 255, 0);
-    color: rgb(100, 100, 100);
+    background-color: transparent;
+    color: dimgray;
     border: none;
     padding: 5px;
 }
@@ -154,7 +182,8 @@ QTabBar::tab:hover {
 }
 
 #About QPushButton {
-    background-color: rgb(220, 220, 220);
+    font: 10pt;
+    background-color: transparent;
     color: dimgray;
     border: none;
 }
@@ -171,26 +200,41 @@ QTabBar::tab:hover {
 
 /* --------------------------- 设置窗口主题页 ------------------------------ */
 
-#Theme {
+#Style {
     background-color: rgb(230, 230, 230);
 }
 
-#ThemeSelects {
+#Style QComboBox {
+    font: 10pt;
     color: dimgray;
     border: 1px solid lightgray;
     background-color: whitesmoke;
 }
 
-#ThemeSelects::drop-down {
+#Style QComboBox::drop-down {
     width: 25px;
     background-color: lightgray;
 }
 
-#ThemeSelects QAbstractItemView {
+#Style  QComboBox QAbstractItemView {
     color: dimgray;
     background-color: whitesmoke;
-    selection-background-color: lightgray;
-    selection-color: dimgray;
+    outline: none;
+}
+
+#Style QComboBox QAbstractItemView::item:hover {
+    background-color: lightgray;
+    color: dimgray; 
+}
+
+#Style QComboBox QAbstractItemView::item:selected {
+    background-color: lightgray;
+    color: dimgray;
+}
+
+#Style QLabel {
+    font: 10pt;
+    color: dimgray;
 }
 
 /* --------------------------- app样式 ------------------------------ */
@@ -200,11 +244,12 @@ OverQLabel {
 }
 
 OverQLabel[isSelected="true"] {
-    border: 2px solid lightgray;
+    border: 2px solid silver;
     border-radius: 4px;
 }
 
 QMenu {
+    font: 10pt;
     color: dimgray;
     background-color: whitesmoke;
     border: none;
@@ -221,4 +266,11 @@ QMenu::item:selected {
 
 QMenu::item:disabled {
     color: #AAAAAA;
+}
+
+QToolTip {
+    font: 10pt;
+    background-color: whitesmoke;
+    color: dimgray;
+    border: 1px solid lightgray;
 }

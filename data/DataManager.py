@@ -1,7 +1,5 @@
-from enum import Enum
 import os, json
-from PySide6.QtCore import QFile, QTextStream
-
+from PySide6.QtGui import QFont
 class UserData():
     appDataFileName = './data/app_data.json'
     settingsDataFileName = './data/settings.json'
@@ -15,18 +13,32 @@ class UserData():
         }
         UserData.settingsData = {
             'theme': 'light',
+            'font': '微软雅黑',
         }
+
+    @staticmethod
+    def checkDataPathIsExist():
+        # 检查文件夹是否存在，如果不存在则创建
+        dataDir = os.path.dirname(UserData.appDataFileName)
+        
+        # 确保 Data 文件夹存在
+        if not os.path.exists(dataDir):
+            os.makedirs(dataDir)  # 创建文件夹
+
+        # 检查 appData 文件是否存在，如果不存在则创建, 并初始化
+        if not os.path.exists(UserData.appDataFileName):
+           with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
+               json.dump(UserData.appDocker, jsonFile, indent=4)
+ 
+        # 检查 settingsData 文件是否存在，如果不存在则创建, 并初始化
+        if not os.path.exists(UserData.settingsDataFileName):
+           with open(UserData.settingsDataFileName, 'w', encoding='utf-8') as jsonFile:
+                json.dump(UserData.settingsData, jsonFile, indent=4)
 
     # 加载数据
     @ staticmethod
     def loadUserData():    
-        if not os.path.exists(UserData.appDataFileName):
-            with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(UserData.appDocker, jsonFile, indent=4)
-        if not os.path.exists(UserData.settingsDataFileName):
-            with open(UserData.settingsDataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(UserData.settingsData, jsonFile, indent=4)    
-        # 读取文件并加载数据
+        # 读取 appData 文件并加载数据
         with open(UserData.appDataFileName, 'r', encoding='utf-8') as jsonFile:
             datas = json.load(jsonFile)
             for row, col_data in datas.items():
@@ -35,21 +47,23 @@ class UserData():
                 for col, value in col_data.items():
                     col = int(col)
                     UserData.appDocker[row][col] = value
+
+        # 读取 settingsData 文件并加载数据
         with open(UserData.settingsDataFileName, 'r', encoding='utf-8') as jsonFile:
             UserData.settingsData = json.load(jsonFile)
+
+        # 显示读取的数据
         UserData.displayData()
 
     
     # 保存数据
     @ staticmethod
     def saveUserData():
-        if not os.path.exists(UserData.appDataFileName):
-            # 创建文件（不写入任何内容）
-            with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(UserData.appDocker, jsonFile, indent=4)
-        if not os.path.exists(UserData.settingsDataFileName):
-            with open(UserData.settingsDataFileName, 'w', encoding='utf-8') as jsonFile:
-                json.dump(UserData.settingsData, jsonFile, indent=4)
+        # 检查文件夹是否存在，如果不存在则创建
+        dataDir = os.path.dirname(UserData.appDataFileName)
+        # 确保 Data 文件夹存在
+        if not os.path.exists(dataDir):
+            os.makedirs(dataDir) # 创建文件夹
         # 保存数据
         with open(UserData.appDataFileName, 'w', encoding='utf-8') as jsonFile:
             json.dump(UserData.appDocker, jsonFile, indent=4)
@@ -69,6 +83,7 @@ class UserData():
             for col in UserData.appDocker[row]:
                 if UserData.appDocker[row][col]['path'] != 'none':
                     print(f"{row}:{col}: {UserData.appDocker[row][col]}")
+        print(f"{UserData.settingsData}")
         print(f"================")
 
 # 定义一个 Enum 来表示不同的主题
@@ -76,7 +91,34 @@ class StyleSheetData():
     lightTheme = None
     darkTheme = None
     macaronTheme = None
-    themeStyle ={}
+    themeMap ={}
+
+    fontMap = {
+        '微软雅黑': QFont("微软雅黑"),
+        '宋体': QFont("宋体"),
+        '楷体': QFont("楷体"),
+        '黑体': QFont("黑体"),
+        '幼圆': QFont("幼圆"),
+        }
+    themeMap2CN = {
+        'light': '浅色模式',
+        'dark': '深色模式',
+        'macaron': '马卡龙',
+        }
+    themeMap2EN = {
+        '浅色模式': 'light',
+        '深色模式': 'dark',
+        '马卡龙': 'macaron',
+        }
+
+    @ staticmethod
+    def getThemeNameCN(englishTheme):
+        return StyleSheetData.themeMap2CN.get(englishTheme)
+
+    @ staticmethod
+    def getThemeNameEN(chineseTheme):
+        return StyleSheetData.themeMap2EN.get(chineseTheme)
+
 
     @ staticmethod
     def loadStyleSheetData(filename):
@@ -89,8 +131,8 @@ class StyleSheetData():
         StyleSheetData.lightTheme = StyleSheetData.loadStyleSheetData("theme\\lightTheme.qss")
         StyleSheetData.darkTheme = StyleSheetData.loadStyleSheetData("theme\\darkTheme.qss")
         StyleSheetData.macaronTheme = StyleSheetData.loadStyleSheetData("theme\\MacaronTheme.qss")
-        StyleSheetData.themeStyle = {
-            "light": StyleSheetData.lightTheme,
-            "dark": StyleSheetData.darkTheme,
-            "macaron": StyleSheetData.macaronTheme
+        StyleSheetData.themeMap = {
+            'light':StyleSheetData.lightTheme,
+            'dark': StyleSheetData.darkTheme,
+            'macaron':StyleSheetData.macaronTheme,
             }

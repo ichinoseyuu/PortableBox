@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QFormLayout, QGridLayout, QHBoxLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QSpacerItem, QWidget)
 import Images_rc
 
 class Ui_MainWindow(object):
@@ -53,7 +53,6 @@ class Ui_MainWindow(object):
 
         self.Title = QLabel(self.TitleWidget)
         self.Title.setObjectName(u"Title")
-        self.Title.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.Title)
 
@@ -65,7 +64,6 @@ class Ui_MainWindow(object):
         self.ButtonMin.setObjectName(u"ButtonMin")
         self.ButtonMin.setMinimumSize(QSize(16, 16))
         self.ButtonMin.setMaximumSize(QSize(16, 16))
-        self.ButtonMin.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.ButtonMin)
 
@@ -77,129 +75,15 @@ class Ui_MainWindow(object):
         self.ButtonExit.setObjectName(u"ButtonExit")
         self.ButtonExit.setMinimumSize(QSize(16, 16))
         self.ButtonExit.setMaximumSize(QSize(16, 16))
-        self.ButtonExit.setStyleSheet(u"")
 
         self.hboxLayout.addWidget(self.ButtonExit)
-
-        self.InfoWidget = QWidget(self.BackGroundWidget)
-        self.InfoWidget.setObjectName(u"InfoWidget")
-        self.InfoWidget.setGeometry(QRect(0, 393, 741, 231))
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.InfoWidget.sizePolicy().hasHeightForWidth())
-        self.InfoWidget.setSizePolicy(sizePolicy1)
-        self.InfoWidget.setStyleSheet(u"")
-        self.gridLayout = QGridLayout(self.InfoWidget)
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.TargetPath = QLabel(self.InfoWidget)
-        self.TargetPath.setObjectName(u"TargetPath")
-        self.TargetPath.setMinimumSize(QSize(80, 20))
-        self.TargetPath.setMaximumSize(QSize(80, 20))
-        self.TargetPath.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.TargetPath, 5, 0, 1, 1)
-
-        self.FileSizeLabel = QLabel(self.InfoWidget)
-        self.FileSizeLabel.setObjectName(u"FileSizeLabel")
-        self.FileSizeLabel.setStyleSheet(u"")
-        self.FileSizeLabel.setWordWrap(True)
-
-        self.gridLayout.addWidget(self.FileSizeLabel, 1, 1, 1, 1)
-
-        self.CreateTimeLabel = QLabel(self.InfoWidget)
-        self.CreateTimeLabel.setObjectName(u"CreateTimeLabel")
-        self.CreateTimeLabel.setStyleSheet(u"")
-        self.CreateTimeLabel.setWordWrap(True)
-
-        self.gridLayout.addWidget(self.CreateTimeLabel, 3, 1, 1, 1)
-
-        self.TotalSize = QLabel(self.InfoWidget)
-        self.TotalSize.setObjectName(u"TotalSize")
-        self.TotalSize.setMinimumSize(QSize(80, 20))
-        self.TotalSize.setMaximumSize(QSize(80, 20))
-        self.TotalSize.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.TotalSize, 6, 0, 1, 1)
-
-        self.LastModifiedTime = QLabel(self.InfoWidget)
-        self.LastModifiedTime.setObjectName(u"LastModifiedTime")
-        self.LastModifiedTime.setMinimumSize(QSize(80, 20))
-        self.LastModifiedTime.setMaximumSize(QSize(80, 20))
-        self.LastModifiedTime.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.LastModifiedTime, 2, 0, 1, 1)
-
-        self.LastModifiedLabel = QLabel(self.InfoWidget)
-        self.LastModifiedLabel.setObjectName(u"LastModifiedLabel")
-        self.LastModifiedLabel.setStyleSheet(u"")
-        self.LastModifiedLabel.setWordWrap(True)
-
-        self.gridLayout.addWidget(self.LastModifiedLabel, 2, 1, 1, 1)
-
-        self.AddTimeLabel = QLabel(self.InfoWidget)
-        self.AddTimeLabel.setObjectName(u"AddTimeLabel")
-        self.AddTimeLabel.setStyleSheet(u"")
-        self.AddTimeLabel.setWordWrap(True)
-
-        self.gridLayout.addWidget(self.AddTimeLabel, 4, 1, 1, 1)
-
-        self.TargetPathLine = QLineEdit(self.InfoWidget)
-        self.TargetPathLine.setObjectName(u"TargetPathLine")
-        self.TargetPathLine.setStyleSheet(u"")
-        self.TargetPathLine.setReadOnly(True)
-
-        self.gridLayout.addWidget(self.TargetPathLine, 5, 1, 1, 1)
-
-        self.CreateTime = QLabel(self.InfoWidget)
-        self.CreateTime.setObjectName(u"CreateTime")
-        self.CreateTime.setMinimumSize(QSize(80, 20))
-        self.CreateTime.setMaximumSize(QSize(80, 20))
-        self.CreateTime.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.CreateTime, 3, 0, 1, 1)
-
-        self.AddTime = QLabel(self.InfoWidget)
-        self.AddTime.setObjectName(u"AddTime")
-        self.AddTime.setMinimumSize(QSize(80, 20))
-        self.AddTime.setMaximumSize(QSize(80, 20))
-        self.AddTime.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.AddTime, 4, 0, 1, 1)
-
-        self.TotalSizeLabel = QLabel(self.InfoWidget)
-        self.TotalSizeLabel.setObjectName(u"TotalSizeLabel")
-        self.TotalSizeLabel.setStyleSheet(u"")
-        self.TotalSizeLabel.setWordWrap(True)
-
-        self.gridLayout.addWidget(self.TotalSizeLabel, 6, 1, 1, 1)
-
-        self.FileName = QLabel(self.InfoWidget)
-        self.FileName.setObjectName(u"FileName")
-        self.FileName.setMinimumSize(QSize(80, 20))
-        self.FileName.setMaximumSize(QSize(80, 20))
-        self.FileName.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.FileName, 0, 0, 1, 1)
-
-        self.FileSize = QLabel(self.InfoWidget)
-        self.FileSize.setObjectName(u"FileSize")
-        self.FileSize.setMinimumSize(QSize(80, 20))
-        self.FileSize.setMaximumSize(QSize(80, 20))
-        self.FileSize.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.FileSize, 1, 0, 1, 1)
-
-        self.FileNameLabel = QLabel(self.InfoWidget)
-        self.FileNameLabel.setObjectName(u"FileNameLabel")
-        self.FileNameLabel.setStyleSheet(u"")
-        self.FileNameLabel.setWordWrap(True)
-
-        self.gridLayout.addWidget(self.FileNameLabel, 0, 1, 1, 1)
 
         self.BtnWidget = QWidget(self.BackGroundWidget)
         self.BtnWidget.setObjectName(u"BtnWidget")
         self.BtnWidget.setGeometry(QRect(0, 31, 741, 41))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.BtnWidget.sizePolicy().hasHeightForWidth())
         self.BtnWidget.setSizePolicy(sizePolicy1)
         self.BtnWidget.setStyleSheet(u"")
@@ -209,21 +93,71 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7 = QHBoxLayout(self.layoutWidget)
         self.horizontalLayout_7.setSpacing(12)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.horizontalLayout_7.setContentsMargins(12, 0, 0, 0)
+        self.horizontalLayout_7.setContentsMargins(12, 0, 12, 0)
+        self.ButtonMultiSelect = QPushButton(self.layoutWidget)
+        self.ButtonMultiSelect.setObjectName(u"ButtonMultiSelect")
+        sizePolicy.setHeightForWidth(self.ButtonMultiSelect.sizePolicy().hasHeightForWidth())
+        self.ButtonMultiSelect.setSizePolicy(sizePolicy)
+        self.ButtonMultiSelect.setMinimumSize(QSize(32, 32))
+        self.ButtonMultiSelect.setMaximumSize(QSize(32, 32))
+        font = QFont()
+        font.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        self.ButtonMultiSelect.setFont(font)
+        icon = QIcon()
+        icon.addFile(u":/btn/images/select_more_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/btn/images/select_more_activated.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonMultiSelect.setIcon(icon)
+        self.ButtonMultiSelect.setIconSize(QSize(32, 32))
+        self.ButtonMultiSelect.setCheckable(True)
+
+        self.horizontalLayout_7.addWidget(self.ButtonMultiSelect)
+
+        self.ButtonSelectAll = QPushButton(self.layoutWidget)
+        self.ButtonSelectAll.setObjectName(u"ButtonSelectAll")
+        sizePolicy.setHeightForWidth(self.ButtonSelectAll.sizePolicy().hasHeightForWidth())
+        self.ButtonSelectAll.setSizePolicy(sizePolicy)
+        self.ButtonSelectAll.setMinimumSize(QSize(32, 32))
+        self.ButtonSelectAll.setMaximumSize(QSize(32, 32))
+        self.ButtonSelectAll.setFont(font)
+        icon1 = QIcon()
+        icon1.addFile(u":/btn/images/selectall_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonSelectAll.setIcon(icon1)
+        self.ButtonSelectAll.setIconSize(QSize(32, 32))
+
+        self.horizontalLayout_7.addWidget(self.ButtonSelectAll)
+
+        self.ButtonUnselectAll = QPushButton(self.layoutWidget)
+        self.ButtonUnselectAll.setObjectName(u"ButtonUnselectAll")
+        sizePolicy.setHeightForWidth(self.ButtonUnselectAll.sizePolicy().hasHeightForWidth())
+        self.ButtonUnselectAll.setSizePolicy(sizePolicy)
+        self.ButtonUnselectAll.setMinimumSize(QSize(32, 32))
+        self.ButtonUnselectAll.setMaximumSize(QSize(32, 32))
+        self.ButtonUnselectAll.setFont(font)
+        icon2 = QIcon()
+        icon2.addFile(u":/btn/images/unselectall_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonUnselectAll.setIcon(icon2)
+        self.ButtonUnselectAll.setIconSize(QSize(32, 32))
+
+        self.horizontalLayout_7.addWidget(self.ButtonUnselectAll)
+
+        self.BtnSpacer = QSpacerItem(40, 32, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_7.addItem(self.BtnSpacer)
+
         self.ButtonAdd = QPushButton(self.layoutWidget)
         self.ButtonAdd.setObjectName(u"ButtonAdd")
         sizePolicy.setHeightForWidth(self.ButtonAdd.sizePolicy().hasHeightForWidth())
         self.ButtonAdd.setSizePolicy(sizePolicy)
         self.ButtonAdd.setMinimumSize(QSize(32, 32))
         self.ButtonAdd.setMaximumSize(QSize(32, 32))
-        font = QFont()
-        font.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
-        font.setPointSize(12)
-        font.setBold(False)
-        font.setItalic(False)
         self.ButtonAdd.setFont(font)
-        self.ButtonAdd.setStyleSheet(u"image: url(:/btn/images/add_64px.png);\n"
-"")
+        icon3 = QIcon()
+        icon3.addFile(u":/btn/images/add_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonAdd.setIcon(icon3)
+        self.ButtonAdd.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_7.addWidget(self.ButtonAdd)
 
@@ -234,21 +168,12 @@ class Ui_MainWindow(object):
         self.ButtonDel.setMinimumSize(QSize(32, 32))
         self.ButtonDel.setMaximumSize(QSize(32, 32))
         self.ButtonDel.setFont(font)
-        self.ButtonDel.setStyleSheet(u"image: url(:/btn/images/del_64px.png);")
+        icon4 = QIcon()
+        icon4.addFile(u":/btn/images/del_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonDel.setIcon(icon4)
+        self.ButtonDel.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_7.addWidget(self.ButtonDel)
-
-        self.ButtonSelectMore = QPushButton(self.layoutWidget)
-        self.ButtonSelectMore.setObjectName(u"ButtonSelectMore")
-        sizePolicy.setHeightForWidth(self.ButtonSelectMore.sizePolicy().hasHeightForWidth())
-        self.ButtonSelectMore.setSizePolicy(sizePolicy)
-        self.ButtonSelectMore.setMinimumSize(QSize(32, 32))
-        self.ButtonSelectMore.setMaximumSize(QSize(32, 32))
-        self.ButtonSelectMore.setFont(font)
-        self.ButtonSelectMore.setStyleSheet(u"image: url(:/btn/images/select_more_64px.png);\n"
-"")
-
-        self.horizontalLayout_7.addWidget(self.ButtonSelectMore)
 
         self.ButtonSettings = QPushButton(self.layoutWidget)
         self.ButtonSettings.setObjectName(u"ButtonSettings")
@@ -257,15 +182,12 @@ class Ui_MainWindow(object):
         self.ButtonSettings.setMinimumSize(QSize(32, 32))
         self.ButtonSettings.setMaximumSize(QSize(32, 32))
         self.ButtonSettings.setFont(font)
-        self.ButtonSettings.setStyleSheet(u"image: url(:/btn/images/settings_64px.png);\n"
-"\n"
-"")
+        icon5 = QIcon()
+        icon5.addFile(u":/btn/images/settings_64px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonSettings.setIcon(icon5)
+        self.ButtonSettings.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_7.addWidget(self.ButtonSettings)
-
-        self.BtnSpacer = QSpacerItem(40, 32, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_7.addItem(self.BtnSpacer)
 
         self.BackWidget = QWidget(self.BackGroundWidget)
         self.BackWidget.setObjectName(u"BackWidget")
@@ -703,6 +625,70 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addLayout(self.Row_3, 3, 0, 1, 1)
 
+        self.StatusWidget = QWidget(self.BackGroundWidget)
+        self.StatusWidget.setObjectName(u"StatusWidget")
+        self.StatusWidget.setGeometry(QRect(0, 393, 741, 91))
+        self.InfoWidget = QWidget(self.BackGroundWidget)
+        self.InfoWidget.setObjectName(u"InfoWidget")
+        self.InfoWidget.setGeometry(QRect(0, 482, 741, 141))
+        sizePolicy1.setHeightForWidth(self.InfoWidget.sizePolicy().hasHeightForWidth())
+        self.InfoWidget.setSizePolicy(sizePolicy1)
+        self.InfoWidget.setStyleSheet(u"")
+        self.formLayout = QFormLayout(self.InfoWidget)
+        self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setContentsMargins(12, 12, 12, 12)
+        self.FileName = QLabel(self.InfoWidget)
+        self.FileName.setObjectName(u"FileName")
+        self.FileName.setMinimumSize(QSize(65, 24))
+        self.FileName.setMaximumSize(QSize(65, 24))
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.FileName)
+
+        self.FileNameLabel = QLabel(self.InfoWidget)
+        self.FileNameLabel.setObjectName(u"FileNameLabel")
+        self.FileNameLabel.setWordWrap(True)
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.FileNameLabel)
+
+        self.TotalSize = QLabel(self.InfoWidget)
+        self.TotalSize.setObjectName(u"TotalSize")
+        self.TotalSize.setMinimumSize(QSize(65, 24))
+        self.TotalSize.setMaximumSize(QSize(65, 24))
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.TotalSize)
+
+        self.TotalSizeLabel = QLabel(self.InfoWidget)
+        self.TotalSizeLabel.setObjectName(u"TotalSizeLabel")
+        self.TotalSizeLabel.setWordWrap(True)
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.TotalSizeLabel)
+
+        self.AddTime = QLabel(self.InfoWidget)
+        self.AddTime.setObjectName(u"AddTime")
+        self.AddTime.setMinimumSize(QSize(65, 24))
+        self.AddTime.setMaximumSize(QSize(65, 24))
+
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.AddTime)
+
+        self.AddTimeLabel = QLabel(self.InfoWidget)
+        self.AddTimeLabel.setObjectName(u"AddTimeLabel")
+        self.AddTimeLabel.setWordWrap(True)
+
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.AddTimeLabel)
+
+        self.TargetPath = QLabel(self.InfoWidget)
+        self.TargetPath.setObjectName(u"TargetPath")
+        self.TargetPath.setMinimumSize(QSize(65, 24))
+        self.TargetPath.setMaximumSize(QSize(65, 24))
+
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.TargetPath)
+
+        self.TargetPathLine = QLineEdit(self.InfoWidget)
+        self.TargetPathLine.setObjectName(u"TargetPathLine")
+        self.TargetPathLine.setReadOnly(True)
+
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.TargetPathLine)
+
         MainWindow.setCentralWidget(self.BackGroundWidget)
 
         self.retranslateUi(MainWindow)
@@ -713,22 +699,40 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         self.Icon.setText("")
         self.Title.setText(QCoreApplication.translate("MainWindow", u"PortableBox", None))
+#if QT_CONFIG(tooltip)
+        self.ButtonMin.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u6700\u5c0f\u5316</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.ButtonMin.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonExit.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u5173\u95ed</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.ButtonExit.setText("")
-        self.TargetPath.setText(QCoreApplication.translate("MainWindow", u"\u76ee\u6807\u4f4d\u7f6e\uff1a", None))
-        self.FileSizeLabel.setText("")
-        self.CreateTimeLabel.setText("")
-        self.TotalSize.setText(QCoreApplication.translate("MainWindow", u"\u7a0b\u5e8f\u603b\u5927\u5c0f\uff1a", None))
-        self.LastModifiedTime.setText(QCoreApplication.translate("MainWindow", u"\u6700\u540e\u4fee\u6539\u65f6\u95f4\uff1a", None))
-        self.LastModifiedLabel.setText("")
-        self.AddTimeLabel.setText("")
-        self.TargetPathLine.setText("")
-        self.CreateTime.setText(QCoreApplication.translate("MainWindow", u"\u521b\u5efa\u65f6\u95f4\uff1a", None))
-        self.AddTime.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u65f6\u95f4\uff1a", None))
-        self.TotalSizeLabel.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonMultiSelect.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u53d8\u66f4\u9009\u62e9\u6a21\u5f0f</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.ButtonSelectAll.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u5168\u90e8\u9009\u4e2d</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.ButtonUnselectAll.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u53d6\u6d88\u5168\u9009</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.ButtonAdd.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u6dfb\u52a0\u7a0b\u5e8f</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.ButtonDel.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u4ecePortableBox\u4e2d\u5220\u9664</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.ButtonSettings.setToolTip(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>\u6253\u5f00\u8bbe\u7f6e</p></body></html>", None))
+#endif // QT_CONFIG(tooltip)
         self.FileName.setText(QCoreApplication.translate("MainWindow", u"\u7a0b\u5e8f\u540d\u79f0\uff1a", None))
-        self.FileSize.setText(QCoreApplication.translate("MainWindow", u"\u6587\u4ef6\u5927\u5c0f\uff1a", None))
         self.FileNameLabel.setText("")
+        self.TotalSize.setText(QCoreApplication.translate("MainWindow", u"\u7a0b\u5e8f\u5927\u5c0f\uff1a", None))
+        self.TotalSizeLabel.setText("")
+        self.AddTime.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u65f6\u95f4\uff1a", None))
+        self.AddTimeLabel.setText("")
+        self.TargetPath.setText(QCoreApplication.translate("MainWindow", u"\u76ee\u6807\u4f4d\u7f6e\uff1a", None))
+        self.TargetPathLine.setText("")
         pass
     # retranslateUi
 
